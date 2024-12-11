@@ -1,0 +1,391 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+  color: var(--foreground);
+  background: #060000;
+  font-family: var(--font-outfit), sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+.category-button {
+  padding: 8px 16px;
+  background-color: #EBCA7E;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.category-button:hover {
+  background-color: #EBCA7E;
+  color: white;
+}
+
+.ant-tabs-tab-btn {
+  padding: 0;
+}
+
+/* Remove the default Ant Design border for the Tabs */
+.ant-tabs-nav {
+  border-bottom: none !important;
+}
+.category-button:hover{
+  background-color: transparent;
+  
+}
+.category-button {
+  padding: 10px 20px;
+font-size: 14px;
+  border: none;
+  font-weight: 700;
+  color: white;
+  background: transparent;
+  cursor: pointer;
+}
+
+.active-tab {
+  background-color: #EBCA7E; /* Custom background color for active tab */
+  color: #000000;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+.ant-tabs-tab {
+  margin-right: 16px;
+
+}
+
+:where(.css-dev-only-do-not-override-qnu6hi).ant-collapse .ant-collapse-content>.ant-collapse-content-box {
+
+  background-color: #F2F4F7;
+}
+:where(.css-dev-only-do-not-override-qnu6hi).ant-rate .ant-rate-star:not(:last-child) {
+  margin-inline-end: 0px;
+}
+
+.flex.items-center.space-x-4 {
+  width: inherit;
+}
+/* styles.css or a global stylesheet */
+input::-webkit-input-placeholder {
+  color: #FFFFFF99; /* Chrome */
+  opacity: 1; /* Ensure the placeholder is fully opaque */
+}
+
+input:-moz-placeholder {
+  color: #FFFFFF99; /* Firefox 18- */
+  opacity: 1; 
+}
+
+input::-moz-placeholder {
+  color: #FFFFFF99; /* Firefox 19+ */
+  opacity: 1; 
+}
+
+input:-ms-input-placeholder {
+  color: #FFFFFF99; /* Internet Explorer 10-11 */
+  opacity: 1; 
+}
+
+/* For Ant Design Input specifically */
+.ant-input::placeholder {
+  color: #FFFFFF99 !important; /* Override placeholder color */
+  opacity: 1; /* Ensure full opacity */
+}
+
+/* styles.css or your global stylesheet */
+.ant-input-password-icon {
+  font-size: large;
+  color: #FFFFFF99 !important; /* Change to your desired color */
+}
+/* styles.css */
+.custom-checkbox .ant-checkbox-inner {
+  background-color: #f0f0f0; /* Default background color */
+  border: 2px solid #ccc; /* Border color */
+}
+
+.custom-checkbox .ant-checkbox-checked .ant-checkbox-inner {
+  background-color: #4CAF50; /* Background color when checked */
+  border-color: #4CAF50; /* Border color when checked */
+}
+
+.custom-checkbox .ant-checkbox-checked::after {
+  border: none; /* Remove default check mark border */
+}
+.ant-space-item {
+  width: -webkit-fill-available;
+}
+
+/* Custom styles for Ant Design components */
+.ant-picker-input,
+.ant-picker-input input {
+    color: white !important;  /* Text color for RangePicker */
+}
+
+.ant-picker-input::placeholder,
+.ant-picker-input input::placeholder {
+    color: white !important;  /* Placeholder color for RangePicker */
+}
+
+  
+
+.ant-input::placeholder {
+    color: white !important;  /* Placeholder color for InputNumber */
+}
+
+.ant-input-number-handler-wrap {
+    color: white !important;  /* Color for InputNumber icons */
+}
+:where(.css-dev-only-do-not-override-ccdg5a).ant-picker .ant-picker-suffix {
+  display: flex;
+  flex: none;
+  align-self: center;
+  margin-inline-start: 4px;
+  color: white;
+  line-height: 1;
+  pointer-events: none;
+  transition: opacity 0.2s, color 0.2s;
+}
+
+:where(.css-dev-only-do-not-override-ccdg5a).ant-picker .ant-picker-separator {
+  position: relative;
+  display: inline-block;
+  width: 1em;
+  height: 16px;
+  color: white;
+  font-size: 16px;
+  vertical-align: top;
+  cursor: default;
+}
+
+
+.custom-input {
+  height: 44px;
+  background-color: #4B4B4B;
+  border: none;
+  color: white !important; /* Set input text color */
+}
+
+.custom-input::placeholder {
+  color: white !important; /* Set placeholder color */
+}
+
+/* For InputNumber arrow handlers */
+.ant-input-number-handler-wrap {
+  color: white !important; /* Set color for the input number handlers */
+}
+.custom-rate .ant-rate-star {
+  color: white; /* Default star color */
+}
+
+.custom-rate .ant-rate-star.ant-rate-star-full {
+  color: red; /* Selected star color */
+}
+span.anticon.anticon-calendar {
+  color: aliceblue;
+}
+span.anticon.anticon-swap-right {
+  color: white;
+}
+.custom-select{
+  
+  -webkit-appearance: none; /* For Safari */
+  -moz-appearance: none; /* For Firefox */
+  appearance: none; /* For modern browsers */
+  background-image: none; /* Removes any default background image */
+  padding-right: 2rem; 
+
+
+}
+/* Customize the Ant Design Select component */
+.custom-select .ant-select-selector {
+  background-color: #4b4b4b !important; /* Background color of the select input */
+  color: #ffffffcc !important; /* Text color */
+  height: 44px; /* Height */
+  border: none !important; /* Remove border */
+}
+
+
+.custom-select .ant-select-dropdown {
+  background-color: #4b4b4b !important; /* Background color of the dropdown menu */
+}
+
+.custom-select .ant-select-item {
+  background-color: #4b4b4b !important; /* Background color of each dropdown item */
+  color: #ffffffcc !important; /* Text color of each item */
+}
+
+.custom-select .ant-select-item:hover {
+  background-color: #242424 !important; /* Hover background color */
+}
+span.anticon.anticon-down.ant-select-suffix {
+  color: white;
+}
+
+
+/* Custom class for the table */
+.custom-table .ant-table {
+  background-color: #242424 !important; /* Table background */
+  border: none; /* Remove the table border */
+}
+/* Custom class for the table */
+.custom-table2 .ant-table {
+  background-color: transparent !important; /* Table background */
+  border: none; /* Remove the table border */
+  color: #ffffff !important; /* Text color */
+}
+
+.custom-table .ant-table-thead > tr > th {
+  color: #ffffff !important; /* Table header text color */
+  font-size: large;
+}
+.custom-table .ant-table-thead > tr > th,
+.custom-table .ant-table-tbody > tr > td {
+  background-color: #242424 !important; /* Ensure rows and headers have the background */
+  border: none !important; /* Remove borders between cells */
+  color: #ffffff; /* Text color */
+}
+
+.custom-table2 .ant-table-thead > tr > th {
+  background-color: transparent !important; /* Ensure rows and headers have the background */
+  color: #ffffff !important; /* Text color */
+  border: none !important; /* Remove borders between cells */
+}
+.custom-table2 .ant-table-tbody > tr > td {
+  border: none !important; /* Remove borders between cells */
+  color: #ffffff; /* Text color */
+}
+
+/* Disable hover effect */
+.custom-table .ant-table-tbody > tr:hover > td {
+  background-color: #242424 !important; /* Keep the same background on hover */
+}
+.custom-table2 .ant-table-tbody > tr:hover > td {
+  background-color: #242424 !important; /* Keep the same background on hover */
+}
+/* Custom class for the table */
+.custom-table .ant-table-tbody > tr > td:nth-child(2),
+.custom-table .ant-table-tbody > tr > td:nth-child(3),
+.custom-table .ant-table-tbody > tr > td:nth-child(4) {
+  border-left: none !important; /* Remove left border for specific columns */
+}
+
+/* Custom styles for the Ant Design Table */
+.custom-table .ant-table {
+  color: #f56565; /* Tailwind's red-500 color hex value */
+}
+
+/* Custom styles for the Ant Design Table body */
+.custom-table .ant-table-tbody > tr > td {
+  color: #FFFFFFCC; /* Tailwind's red-500 color hex value */
+}
+
+.custom-modal{
+  background-color: #242424 !important; /* Modal background */
+}
+
+.custom-modal2{
+  background-color: #242424 !important; /* Modal background */
+}
+
+
+
+.custom-modal .ant-modal-content {
+  border: none; /* Remove modal border */
+  background-color: #242424; /* Ensure the modal content is fully black */
+}
+.custom-modal .ant-modal-header {
+  border: none; /* Remove header border */
+}
+.custom-modal .ant-modal-body {
+  border: none; /* Remove body border */
+}
+.custom-modal .ant-modal-close {
+  color: white; /* Change close icon color */
+}
+.notification-modal {
+  position: absolute;
+  top: 90px; /* Adjust based on where you want it to appear */
+  left: 0;
+  right: 0;
+  background: black;
+  padding: 16px;
+  z-index: 1000; /* Ensure it appears above other elements */
+  display: flex;
+  flex-direction: column;
+}
+
+.close-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: white;
+  margin-bottom: 10px; /* Space between button and notifications */
+}
+
+.timestamp {
+  font-size: 12px;
+  color: gray;
+}
+
+.notification-modal ul {
+  list-style-type: none; /* Remove bullet points */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margin */
+}
+
+.ant-picker.ant-picker-outlined.css-dev-only-do-not-override-vryruh.w-full {
+  background: transparent;
+}
+
+.hero-carousel .slick-slide {
+  height: 407px; /* Ensure the carousel has a consistent height */
+}
+
+.hero-background {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 407px; /* Same as the carousel height */
+  background: no-repeat center center/cover; /* No need for a specific image here, we can apply it in JS */
+}
+
+.hero-background:nth-child(1) {
+  background-image: url('/public/images/heroimg1.png'); /* Replace with your actual image paths */
+}
+
+.hero-background:nth-child(2) {
+  background-image: url('/public/images/heroimg2.png'); /* Replace with your actual image paths */
+}
+
+.hero-background:nth-child(3) {
+  background-image: url('/public/images/heroimg3.png'); /* Replace with your actual image paths */
+}
+
+/* Add more background styles as necessary for additional slides */
+
+
+.custom-rate .ant-rate-star {
+  color: white; /* Default color for inactive stars */
+}
+
+.custom-rate .ant-rate-star.ant-rate-star-full,
+.custom-rate .ant-rate-star:hover,
+.custom-rate .ant-rate-star-half {
+  color: goldenrod; /* Color for selected, hovered, or half-filled stars */
+}
+
+li.ant-rate-star.ant-rate-star-zero span svg {
+  fill: rgb(104, 104, 104);
+}
