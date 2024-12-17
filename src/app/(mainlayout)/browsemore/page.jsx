@@ -8,12 +8,14 @@ import RoomsCard from "@/components/ui/RoomsCard";
 import roomimage from "/public/images/roomimage.png";
 import { useGetAllSearchPropertyQuery, useGetRoomsQuery } from "@/redux/features/Propertyapi/page";
 import Swal from "sweetalert2";
+import { useGetGuestyPropertiesQuery } from "@/redux/features/guesty/guestyApi";
 
 
 const Page = () => {
   const { data, isError, isLoading, refetch } = useGetRoomsQuery({}, {
     refetchOnFocus: true
   });
+  const { data:guestydata, error:guestyError, isLoading:guestyLoading } = useGetGuestyPropertiesQuery();
 
   const [activeKey, setActiveKey] = useState("1");
 const [location, setLocation] = useState('');
@@ -73,11 +75,11 @@ const [location, setLocation] = useState('');
 
 
   // Extract properties from the data for easier handling
-  const roomsData = data?.properties || [];
+  const roomsData = guestydata?.results || [];
   console.log(roomsData);
 
   // Create a unique list of categories with "All Category" at the beginning
-  const uniqueCategories = Array.from(new Set(roomsData.map((room) => room.category)));
+  const uniqueCategories = Array.from(new Set(roomsData.map((room) => room?.propertyType)));
   const categories = ['All Category', ...uniqueCategories];
 
   // Function to handle tab change
@@ -89,8 +91,8 @@ const [location, setLocation] = useState('');
   // Function to filter rooms by category
   const filterRoomsByCategory = (category) => {
     if (category === "All Category") return roomsData;
-    return roomsData.filter((room) => room.category.toLowerCase() === category.toLowerCase());
-  };
+    return roomsData.filter((room) => room?.propertyType.toLowerCase() === category.toLowerCase());
+  }; 4
 
   // Get rooms for the active category
   const filteredRooms = filterRoomsByCategory(categories[parseInt(activeKey) - 1]);

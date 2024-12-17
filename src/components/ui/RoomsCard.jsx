@@ -34,7 +34,7 @@ console.log(data)
         <div>
         <h2 className="text-lg font-medium">{data?.address?.city}</h2>
           <p className="text-[16px] font-medium">{data?.nickname || 'no name'}</p>
-         <p className="text-lg font-medium mb-2">Price: $ {data.prices?.basePrice} </p>
+         <p className="text-lg font-medium mb-2">MAD {data.prices?.basePrice} </p>
         </div>
           <div>
             <div className="flex items-center space-x-1">

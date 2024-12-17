@@ -10,6 +10,7 @@ import { imageUrl } from '@/redux/api/ApiSlice';
 
 const BlogDetails = ({params}) => {
     console.log(params?.id)
+    const router =useRouter()
 
     const {isLoading,isError,data}=useGetBlogByIdQuery(params?.id)
     if(isLoading){
@@ -19,7 +20,6 @@ const BlogDetails = ({params}) => {
         return <div>something went wrong</div>
     }
 const {title,description,image}=data?.data
-    const router =useRouter()
     return (
         <div className='container mx-auto'>
         <div className='bg-[#242424] p-4 w-full rounded-lg shadow-lg my-8 '>

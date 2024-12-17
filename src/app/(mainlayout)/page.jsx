@@ -11,10 +11,10 @@ const Page = () => {
   
   const {isLoading,isError,data}=useGetHomeContentQuery()
   if(isLoading){
-    return <div>Loading....</div>
+    return <div className='text-white '>Loading....</div>
 }
 if(isError){
-    return <div>something went wrong</div>
+    return <div className='text-white'>something went wrong</div>
 }
 
 console.log(data)

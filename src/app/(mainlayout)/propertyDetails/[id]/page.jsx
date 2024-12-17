@@ -51,13 +51,15 @@ import { imageUrl } from "@/redux/api/ApiSlice";
 import { useMakeAreservationMutation } from "@/redux/features/reservation/ReservationApi";
 import Swal from "sweetalert2";
 import { useCreateGuestyReservationMutation, useGetGuestyPropertiesQuery, useGetGuestySinglePropertyQuery } from "@/redux/features/guesty/guestyApi";
+import { useSelector } from "react-redux";
 
 const Page = ({ params }) => {
   const router = useRouter();
-
+  const user = useSelector((state) => state.user.user);
   // Place hooks at the top level
   const [dates, setDates] = useState(null);
   const [guests, setGuests] = useState(2);
+  const [contact, setcontact] = useState();
   const [total, setTotal] = useState(0);
   const [value, setValue] = useState(0);
   const [isRated, setIsRated] = useState(false);
@@ -70,8 +72,8 @@ const Page = ({ params }) => {
   const carouselRef = useRef(null);
   const [startResarveDate, setstartresarveDate] = useState('')
   const [endResarveDate, setEndResarveDate] = useState('')
-const startisodate=new Date(startResarveDate)
-const EndIsodate=new Date(endResarveDate)
+  const startisodate = new Date(startResarveDate)
+  const EndIsodate = new Date(endResarveDate)
   // Fetch data using query
   const { isLoading, data: roomsalldata, error } = useGetRoomsByIdQuery(params?.id);
   const [addReviewRatings, { isLoading: reviewLoading, error: reviewError }] = useAddReviewRatingsMutation({}, { refetchOnFocus: true })
@@ -133,7 +135,12 @@ const EndIsodate=new Date(endResarveDate)
   const handleGuestsChange = (value) => {
     setGuests(value);
     calculateTotal(dates, value);
-    console.log("Number of Guests:", value);
+    // console.log("Number of Guests:", value);
+  };
+  const handleContactChange = (value) => {
+    setcontact(value);
+
+    // console.log("Number:", value);
   };
 
   const calculateTotal = (dateRange, guests) => {
@@ -157,90 +164,212 @@ const EndIsodate=new Date(endResarveDate)
     }
   };
 
+//   const handleReserveClick = async () => {
+//     try {
+
+
+
+//       // const allresarveData = {
+//       //   propertyId: params?.id,
+//       //   checkInDate: startResarveDate,
+//       //   checkOutDate: endResarveDate,
+//       //   guests: guests,
+//       //   totalPrice: total
+//       // }
+
+
+
+//       const allGuestyData = {
+//         reservation: {
+//           listingId: params?.id,
+//           checkInDateLocalized: startResarveDate,
+//           checkOutDateLocalized: endResarveDate,
+//           guestsCount: guests,
+//           email: user?.email,
+//           phone: contact
+//         },
+//         guest: {
+//           firstName: user?.firstName,
+//           lastName: user?.lastName,
+//           email: user?.email,
+//           phone: contact,
+//         },
+//         policy: {
+//           privacy: {
+//             version: 1,
+//             dateOfAcceptance: startisodate.toISOString(), // or use `null` if not applicable
+//             isAccepted: true,
+//           },
+//           termsAndConditions: {
+//             version: 1,
+//             dateOfAcceptance: EndIsodate.toISOString(), // or use `null` if not applicable
+//             isAccepted: true,
+//           },
+//           marketing: {
+//             dateOfAcceptance: EndIsodate.toISOString(), // or use `null` if not applicable
+//             isAccepted: true,
+//           },
+//         },
+//       };
+
+//       // const respons = await MakeAreservation(allresarveData)
+//       // console.log(respons)
+
+//       const guestyRespons = await createReservation(allGuestyData).unwrap();
+// console.log('Guesty response:', guestyRespons);
+
+      
+//       // if (respons?.data?.success) {
+//       //   Swal.fire({
+//       //     title: 'Reserved!',
+//       //     text: respons?.data?.message,
+//       //     icon: 'success',
+//       //   });
+//       //   router.push('/payment')
+//       // } else {
+//       //   Swal.fire({
+//       //     title: respons?.error?.data?.message,
+//       //     text: 'Please try again...',
+//       //     icon: 'error',
+//       //   });
+//       //   router.push('/auth/GuestLogin')
+//       // }
+
+
+//     } catch (error) {
+//       Swal.fire({
+//         title: 'opps...!',
+//         text: 'Please try again...',
+//         icon: 'error',
+//       });
+      
+      
+//     }
+//   };
+
+
+
   const handleReserveClick = async () => {
     try {
-
-
-
-      const allresarveData = {
-        propertyId: params?.id,
-        checkInDate: startResarveDate,
-        checkOutDate: endResarveDate,
-        guests: guests,
-        totalPrice: total
-      }
-
-
-
+      // const allGuestyData = {
+      //   reservation: {
+      //     listingId: params?.id,
+      //     checkInDateLocalized: startResarveDate,
+      //     checkOutDateLocalized: endResarveDate,
+      //     guestsCount: guests,
+      //     email: user?.email,
+      //     phone: contact || user?.phone,
+      //     MIN_NIGHT:2
+      //   },
+      //   guest: {
+      //     firstName: user?.firstName,
+      //     lastName: user?.lastName,
+      //     email: user?.email,
+      //     phone: contact,
+      //   },
+        // policy: {
+        //   privacy: {
+        //     version: 1,
+        //     dateOfAcceptance: startisodate?.toISOString(),
+        //     isAccepted: true,
+        //   },
+      //     termsAndConditions: {
+      //       version: 1,
+      //       dateOfAcceptance: EndIsodate?.toISOString(),
+      //       isAccepted: true,
+      //     },
+      //     marketing: {
+            // dateOfAcceptance: EndIsodate?.toISOString(),
+            // isAccepted: true,
+      //     },
+      //   },
+      // };
       const allGuestyData = {
         reservation: {
+        //   "coupon": "string",
           listingId: params?.id,
           checkInDateLocalized: startResarveDate,
-          checkOutDateLocalized: endResarveDate ,
-          guestsCount: 2,
+          checkOutDateLocalized: endResarveDate,
+          guestsCount: guests,
+          email:user?.email,
+          phone:contact || user?.phone,
+          MIN_NIGHT:2
         },
         guest: {
-          firstName: "mehedi",
-          lastName: "hasan",
-          email: "mdmehedihasen678@gmail.com",
-          phone: "553565465",
+          firstName: "abir",
+          lastName: "arafat", 
+          email: "abirwerks@gmail.com",
+          phone: "01999999999"
         },
         policy: {
-          privacy: {
-            version: 1,
-            dateOfAcceptance: startisodate.toISOString(), // or use `null` if not applicable
-            isAccepted: true,
-          },
-          termsAndConditions: {
-            version: 1,
-            dateOfAcceptance: EndIsodate.toISOString(), // or use `null` if not applicable
-            isAccepted: true,
-          },
-          marketing: {
-            dateOfAcceptance: EndIsodate.toISOString(), // or use `null` if not applicable
-            isAccepted: true,
-          },
+          privacy: {version: 1,dateOfAcceptance: startisodate?.toISOString(), isAccepted: true},
+          termsAndConditions: {version: 1,   dateOfAcceptance: EndIsodate?.toISOString(),isAccepted: true,},
+          marketing: { dateOfAcceptance: EndIsodate?.toISOString(),isAccepted: true,}
         },
-      };
-      
-      const respons = await MakeAreservation(allresarveData)
-      console.log(respons)
-
-      const guestyRespons = await createReservation(allGuestyData).unwrap();
-      console.log('guesty-preview-data', allGuestyData);
-      console.log('guesty-respons', guestyRespons);
-      if (respons?.data?.success) {
-        Swal.fire({
-          title: 'Reserved!',
-          text: respons?.data?.message,
-          icon: 'success',
-        });
-
-
-
-        router.push('/payment')
-
-
-
-
-      } else {
-        Swal.fire({
-          title: respons?.error?.data?.message,
-          text: 'Please try again...',
-          icon: 'error',
-        });
+        payment: {token: "pm_1KTRn22eZvKYlo2CkHIARaGo"}
       }
 
-
-
-
-    } catch (error) {
-      console.log(' catch-error', error)
+      // API Call
+      const guestyResponse = await createReservation(allGuestyData).unwrap();
+  console.log('guestyrespons',guestyResponse)
+      // Check if the response contains required fields
+      if (
+        guestyResponse &&
+        guestyResponse._id &&
+        guestyResponse.confirmationCode &&
+        guestyResponse.status === 'confirmed'
+      ) {
+        // Successful Reservation
+        Swal.fire({
+          title: 'Reservation Confirmed!',
+          html: `
+            <p><strong>Confirmation Code:</strong> ${guestyResponse.confirmationCode}</p>
+            <p><strong>Reservation Status:</strong> ${guestyResponse.status}</p>
+          `,
+          icon: 'success',
+        });
+      } else {
+        // Handle unexpected success response structure
+        Swal.fire({
+          title: 'Reservation Successful!',
+          text: 'The reservation was created, but some details are missing.',
+          icon: 'warning',
+        });
+      }
+    }  catch (error) {
+      console.error('API Error:', error);
+    
+      // Extract the error details from the response
+      const errorCode = error?.data?.error?.code || 'LISTING_CALENDAR_BLOCKED';
+      const errorMessage = error?.data?.error?.message || 'Something went wrong. Please try again.';
+      const errorDetails = error?.data?.error?.data?.errors?.join(', ') || 'No additional dates available.';
+    
+      // Show the error in a user-friendly way
+      Swal.fire({
+        title: 'Reservation Failed!',
+        html: `
+          <p> ${errorCode}</p>
+        
+        `,
+        icon: 'error',
+      });
     }
-
-
-
+    
   };
+  // <p><strong>Message:</strong> ${errorMessage}</p>
+   // <p><strong>Details:</strong> ${errorDetails}</p>
+
+
+
+
+
+
+
+
+
+
+
+
 
   const toggleShowMore = (id) => {
 
@@ -347,6 +476,10 @@ const EndIsodate=new Date(endResarveDate)
   } = ratingsData?.data?.[0] || {};
 
   // console.log('asjdlasl',averageRating,checkin,communication,cleanliness)
+
+
+
+  console.log('usersss', user)
   return (
 
     // .container>div*{ssdflk}+div>p*4{items}
@@ -435,6 +568,29 @@ const EndIsodate=new Date(endResarveDate)
               className="w-full text-[16px] font-medium custom-input" // Add custom class
               placeholder="Guests"
               onChange={handleGuestsChange}
+            />
+          </div>
+
+          <div className="mt-4">
+            <Input
+              required
+              disabled
+              style={{ backgroundColor: '#4B4B4B', height: '44px', border: 'none', color: 'white' }}
+              defaultValue={user?.email}
+              className="w-full text-[16px] font-medium " // Add custom class
+
+
+            />
+          </div>
+          <div className="mt-4">
+            <InputNumber
+              required
+              type="number"
+              style={{ backgroundColor: '#4B4B4B', height: '44px', border: 'none', color: 'white' }}
+              defaultValue={user?.phone}
+              className="w-full text-[16px] font-medium " // Add custom class
+              placeholder="your phone number"
+              onChange={handleContactChange}
             />
           </div>
 

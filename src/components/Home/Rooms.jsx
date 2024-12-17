@@ -56,7 +56,7 @@ console.log('guestyData',guestydata?.results)
 
 
 
-  if (isLoading) {
+  if (isLoading || guestyLoading) {
     return <div>Loading...</div>;
   }
 
