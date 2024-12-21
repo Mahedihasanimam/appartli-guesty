@@ -389,3 +389,18 @@ span.anticon.anticon-down.ant-select-suffix {
 li.ant-rate-star.ant-rate-star-zero span svg {
   fill: rgb(104, 104, 104);
 }
+
+
+/* Professional styling for disabled calendar dates */
+.ant-picker-cell-disabled {
+  background-color: #f7f7f7 !important; /* Soft neutral background */
+  color: #b3b3b3 !important;           /* Subtle gray text color */
+  cursor: not-allowed;                 /* Indicate non-clickable dates */
+  opacity: 0.8;                        /* Slight transparency */
+}
+
+/* Optional: Enhance the inner cell for a polished look */
+.ant-picker-cell-disabled .ant-picker-cell-inner {
+  border: 1px dashed #e0e0e0;          /* Dashed border for visual distinction */
+  border-radius: 4px;                  /* Slight rounding for a smoother look */
+}

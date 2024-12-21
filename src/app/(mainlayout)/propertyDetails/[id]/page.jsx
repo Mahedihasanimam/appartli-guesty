@@ -50,7 +50,7 @@ import { useAddReviewRatingsMutation, useGetRatingsByPropertyIdQuery, useGetRoom
 import { imageUrl } from "@/redux/api/ApiSlice";
 import { useMakeAreservationMutation } from "@/redux/features/reservation/ReservationApi";
 import Swal from "sweetalert2";
-import { useCreateGuestyReservationMutation, useGetGuestyPropertiesQuery, useGetGuestySinglePropertyQuery } from "@/redux/features/guesty/guestyApi";
+import { useCreateGuestyReservationMutation, useGetGuestyCalendarQuery, useGetGuestyPropertiesQuery, useGetGuestySinglePropertyQuery } from "@/redux/features/guesty/guestyApi";
 import { useSelector } from "react-redux";
 
 const Page = ({ params }) => {
@@ -83,8 +83,36 @@ const Page = ({ params }) => {
   const { data: guestydata, error: guestyerror, isLoading: guestyLoading } = useGetGuestySinglePropertyQuery(params?.id);
   // console.log('guestyyyy',guestydata)
   // console.log('guestyyyyid',params?.id)
+  const currentDate = new Date();
+  const startcalDate = currentDate.toISOString().split('T')[0];  // Current date in 'YYYY-MM-DD' format
+  const endcalDate = new Date(currentDate.setFullYear(currentDate.getFullYear() + 1)).toISOString().split('T')[0]; // One year from today
+  
+  const { data:calenderData, error:calError, isLoading:calLoading } = useGetGuestyCalendarQuery({
+    listingId:params?.id,
+    startDate:startcalDate,
+    endDate:endcalDate,
+  });
 
+  
   const { isLoading: getratingLoading, data: ratingsData } = useGetRatingsByPropertyIdQuery(params?.id)
+  if (calLoading) return <p>Loading calendar data...</p>;
+
+  if (calError) return <p>Error fetching calendar: {calError.message}</p>;
+
+// Filter dates where blocks.b is true
+const blockedDates = calenderData?.data?.days
+  .filter((day) => day.blocks.b === true)
+  .map((day) => day.date);
+
+console.log("Blocked Dates:", blockedDates);
+const isDateBlocked = (currentDate) => {
+  if (!currentDate) return false;
+
+  // Format the current date as "YYYY-MM-DD" and check if it's in the blockedDates array
+  return blockedDates.includes(currentDate.format("YYYY-MM-DD"));
+};
+
+
   if (isLoading || reviewLoading || getratingLoading) {
     return <h1>Loading...</h1>;
   }
@@ -248,7 +276,7 @@ const Page = ({ params }) => {
 //   };
 
 
-
+console.log(params?.id)
   const handleReserveClick = async () => {
     try {
       // const allGuestyData = {
@@ -285,16 +313,17 @@ const Page = ({ params }) => {
       //   },
       // };
       const allGuestyData = {
-        reservation: {
+
         //   "coupon": "string",
-          listingId: params?.id,
+        listingId: params?.id,
           checkInDateLocalized: startResarveDate,
           checkOutDateLocalized: endResarveDate,
           guestsCount: guests,
           email:user?.email,
           phone:contact || user?.phone,
-          MIN_NIGHT:2
-        },
+          MIN_NIGHT:2,
+          "status": "confirmed",
+   
         guest: {
           firstName: "abir",
           lastName: "arafat", 
@@ -311,6 +340,8 @@ const Page = ({ params }) => {
 
       // API Call
       const guestyResponse = await createReservation(allGuestyData).unwrap();
+
+      console.log(allGuestyData)
   console.log('guestyrespons',guestyResponse)
       // Check if the response contains required fields
       if (
@@ -340,7 +371,7 @@ const Page = ({ params }) => {
       console.error('API Error:', error);
     
       // Extract the error details from the response
-      const errorCode = error?.data?.error?.code || 'LISTING_CALENDAR_BLOCKED';
+      const errorCode = error?.data || 'LISTING_CALENDAR_BLOCKED';
       const errorMessage = error?.data?.error?.message || 'Something went wrong. Please try again.';
       const errorDetails = error?.data?.error?.data?.errors?.join(', ') || 'No additional dates available.';
     
@@ -548,6 +579,7 @@ const Page = ({ params }) => {
 
           <div className="mt-4">
             <RangePicker
+            disabledDate={isDateBlocked}
               style={{
                 height: "44px",
                 backgroundColor: "#4B4B4B",
