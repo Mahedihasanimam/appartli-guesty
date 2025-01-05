@@ -24,4 +24,4 @@ tagTypes: [
 });
 
 
-export const imageUrl = "http://192.168.12.158:4000/"
+export const imageUrl = "http://10.0.80.85:4000/"

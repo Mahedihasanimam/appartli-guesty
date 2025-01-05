@@ -17,7 +17,7 @@ const PropartyCard = ({ data }) => {
   }
 
 
-  console.log(data?.satisfiedGuests)
+  console.log('propertyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy',imageUrl+ data?.images?.[0])
   return (
 
  <Link href={`/propertyDetails/${data._id}`}>
