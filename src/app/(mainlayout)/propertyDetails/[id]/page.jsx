@@ -52,6 +52,7 @@ import { useMakeAreservationMutation } from "@/redux/features/reservation/Reserv
 import Swal from "sweetalert2";
 import { useCreateGuestyReservationMutation, useGetGuestyCalendarQuery, useGetGuestyPropertiesQuery, useGetGuestySinglePropertyQuery } from "@/redux/features/guesty/guestyApi";
 import { useSelector } from "react-redux";
+import moment from "moment";
 
 const Page = ({ params }) => {
   const router = useRouter();
@@ -105,11 +106,18 @@ const blockedDates = calenderData?.data?.days
   .map((day) => day.date);
 
 console.log("Blocked Dates:", blockedDates);
+
 const isDateBlocked = (currentDate) => {
   if (!currentDate) return false;
 
-  // Format the current date as "YYYY-MM-DD" and check if it's in the blockedDates array
-  return blockedDates.includes(currentDate.format("YYYY-MM-DD"));
+  // Format the current date as "YYYY-MM-DD"
+  const formattedDate = currentDate.format("YYYY-MM-DD");
+
+  // Check if the date is in the blockedDates array or is in the past
+  const isPastDate = moment(formattedDate).isBefore(moment(), "day");
+  const isBlocked = blockedDates.includes(formattedDate);
+
+  return isBlocked || isPastDate;
 };
 
 
@@ -312,6 +320,8 @@ console.log(params?.id)
       //     },
       //   },
       // };
+
+
       const allGuestyData = {
 
         //   "coupon": "string",
