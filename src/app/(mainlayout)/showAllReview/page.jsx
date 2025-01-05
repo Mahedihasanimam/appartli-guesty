@@ -450,7 +450,7 @@ console.log('all reviews',reviews)
                     </h2>
                     <Tooltip title="Superhost">
                       <span className="text-[#FFFFFFCC] text-sm font-semibold">
-                        {owner?.role?.map(i, idx => <span key={idx} className="pr-1"> {i}</span>)}
+                        {owner?.role?.map((i, idx )=> <span key={idx} className="pr-1"> {i}</span>)}
                       </span>
                     </Tooltip>
                   </div>
@@ -486,7 +486,7 @@ console.log('all reviews',reviews)
               <div className="w-full">
                 <div className="mb-4">
                   <h3 className="text-[20px] font-medium text-white">
-                    {owner?.firstName} {owner?.role?.map(i, idx => <span key={idx} className="pr-1">{i}</span>)}
+                    {owner?.firstName} {owner?.role?.map((i, idx) => <span key={idx} className="pr-1">{i}</span>)}
                   </h3>
                   <p className="text-sm text-[#FFFFFFCC] opacity-70 py-4">
                     Superhosts are experienced, highly rated hosts who are

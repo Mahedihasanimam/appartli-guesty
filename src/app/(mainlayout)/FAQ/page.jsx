@@ -1,27 +1,20 @@
 'use client';
 
 import { useGetAllFAQQuery } from "@/redux/features/EditContent/editContentApi";
-import React, { useState } from "react";
-
-
+import React, { useState, Suspense } from "react";
 
 const FAQ = () => {
-
-  const {data,isLoading}=useGetAllFAQQuery();
+  const { data, isLoading } = useGetAllFAQQuery();
   const [activeIndex, setActiveIndex] = useState(null);
 
   const toggleAccordion = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
   };
 
-  if(isLoading){
-    return <div>Loading...</div>
+  if (isLoading) {
+    return <div>Loading...</div>;
   }
-  console.log(data)
 
-
-  
-  
   return (
     <div className="bg-[#060000] min-h-screen text-white py-16">
       <div className="container mx-auto px-4">
@@ -49,4 +42,11 @@ const FAQ = () => {
   );
 };
 
-export default FAQ;
+// Wrap the component with Suspense to handle async data loading.
+const FAQWithSuspense = () => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <FAQ />
+  </Suspense>
+);
+
+export default FAQWithSuspense;

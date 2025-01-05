@@ -8,7 +8,7 @@ import { useGetHomeContentQuery } from '@/redux/features/EditContent/editContent
 import React from 'react';
 
 const Page = () => {
-  
+ 
   const {isLoading,isError,data}=useGetHomeContentQuery()
   if(isLoading){
     return <div className='text-white '>Loading....</div>

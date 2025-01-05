@@ -38,7 +38,11 @@ const GuestLogin = ({
         if (onLogin) {
           onLogin(response);
         }
-        localStorage.setItem("token", response.data?.token);
+
+        if (typeof window !== 'undefined') {
+
+          localStorage.setItem("token", response.data?.token);
+        }
 
         dispatch(setUser(response.data?.user));
         Swal.fire({
@@ -102,7 +106,10 @@ const GuestLogin = ({
           router.push('/');
         });
         // Store only the token in localStorage
-        localStorage.setItem("token", response.data?.data?.token);
+        if(typeof window !== 'undefined'){
+
+          localStorage.setItem("token", response.data?.data?.token);
+        }
 
         // Dispatch action to set user data in RTK
         dispatch(setUser(response.data?.data?.user));
@@ -145,7 +152,10 @@ const GuestLogin = ({
         });
 
         // Store only the token in localStorage
-        localStorage.setItem("token", response.data?.data?.token);
+        if(typeof window !== 'undefined'){
+
+          localStorage.setItem("token", response.data?.data?.token);
+        }
 
         // Dispatch action to set user data in RTK
         dispatch(setUser(response.data?.data?.user));

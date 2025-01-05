@@ -214,8 +214,11 @@ async function fetchAccessToken() {
     const data = await response.json();
 
     // Store the access token and expiry time in localStorage
-    localStorage.setItem('guesty_access_token', data.access_token); // Corrected
-    localStorage.setItem('guesty_token_expiry', Date.now() + data.expires_in * 1000); // Store expiry time
+    if(typeof window !== 'undefined'){
+      
+      localStorage.setItem('guesty_access_token', data.access_token); // Corrected
+      localStorage.setItem('guesty_token_expiry', Date.now() + data.expires_in * 1000); // Store expiry time
+    }
 
     return data.access_token;
   } catch (error) {

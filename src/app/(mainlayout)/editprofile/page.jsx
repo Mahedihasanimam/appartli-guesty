@@ -112,7 +112,7 @@ const Page = () => {
                 <h3 className="text-lg font-semibold">{user?.fullName || user?.firstName}</h3>
                 <p className="text-[#FFFFFF66]">
 
-                  {user?.role?.map(i,idx=><span key={idx} className="pr-1">{i}</span>)}
+                  {user?.role?.map((i,idx)=><span key={idx} className="pr-1">{i}</span>)}
                 </p>
               </div>
             </div>

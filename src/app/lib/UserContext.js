@@ -1,5 +1,6 @@
 "use client";
 
+import { useGetProfileQuery } from "@/redux/features/users/UserApi";
 import { useRouter } from "next/navigation";
 import React, { createContext, useState, useEffect } from "react";
 
@@ -8,6 +9,9 @@ export const UserContext = createContext();
 
 // Create the provider component
 export const UserProvider = ({ children }) => {
+     // ------------------------------Inital User Get On Rtk Query Start---------------------------------
+      useGetProfileQuery("")
+      // ------------------------------Inital User Get On Rtk Query End---------------------------------
   const [token, setToken] = useState(null);
 const router=useRouter()
   useEffect(() => {
@@ -17,6 +21,9 @@ const router=useRouter()
       setToken(storedToken);
     }
   }, []);
+
+
+
 
   const logoutUser = () => {
     setToken(null);

@@ -762,7 +762,7 @@ console.log(params?.id)
               <div className="ml-4">
                 <h2 className="text-xl  font-bold">Stay with {owner?.firstName}</h2>
                 <p className="text-sm text-[#FFFFFFCC]">
-                  {owner?.role?.map(i, idx => <span key={idx} className="pr-1"> {i}</span>)} • 12 years hosting
+                  {owner?.role?.map((i, idx) => <span key={idx} className="pr-1"> {i}</span>)} • 12 years hosting
                 </p>
               </div>
             </div>
@@ -1112,7 +1112,7 @@ console.log(params?.id)
                     </h2>
                     <Tooltip title="Superhost">
                       <span className="text-[#FFFFFFCC] text-sm font-semibold">
-                        {owner?.role?.map(i, idx => <span key={idx} className="pr-1"> {i}</span>)}
+                        {owner?.role?.map((i, idx) => <span key={idx} className="pr-1"> {i}</span>)}
                       </span>
                     </Tooltip>
                   </div>
@@ -1148,7 +1148,7 @@ console.log(params?.id)
               <div className="w-full">
                 <div className="mb-4">
                   <h3 className="text-[20px] font-medium text-white">
-                    {owner?.fullName}  {owner?.role?.map(i, idx => <span key={idx} className="pr-1">{i}</span>)}
+                    {owner?.fullName}  {owner?.role?.map((i, idx )=> <span key={idx} className="pr-1">{i}</span>)}
                   </h3>
                   <p className="text-sm text-[#FFFFFFCC] opacity-70 py-4">
                     Superhosts are experienced, highly rated hosts who are

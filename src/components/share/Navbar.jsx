@@ -1,5 +1,5 @@
 "use client";
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { Input, Button, Dropdown, Menu, Drawer, Modal, Select, Avatar } from "antd";
 import { MenuOutlined, NotificationFilled, UserOutlined } from "@ant-design/icons";
 import logo from "/public/images/logo.svg";
@@ -16,27 +16,18 @@ import { useRouter } from "next/navigation";
 import { useGetLoginUserByIdQuery, useLazyGetProfileQuery } from "@/redux/features/users/UserApi";
 import { imageUrl } from "@/redux/api/ApiSlice";
 const Navbar = () => {
-const dispatch=useDispatch()
-  const [getProfile,{isLoading}]=useLazyGetProfileQuery()
-const addedToken=localStorage.getItem('token')
-
-const handlesetUser=React.useCallback(async()=>{
-  const user=await getProfile(addedToken)
- 
-  if(user?.data?.data){
-    dispatch(setUser(user?.data?.data))
-  }
-},[])
-
-useEffect(()=>{
-  if(addedToken){
-    handlesetUser()
-  }
-},[ addedToken,handlesetUser])
-
-
-
   const user = useSelector((state) => state.user.user);
+  
+  
+  
+  const dispatch=useDispatch()
+
+
+
+
+
+
+
 //  console.log(user?._id)
   
   const router=useRouter()
@@ -54,7 +45,7 @@ useEffect(()=>{
     if (storedIsOwner) {
       setisowner(JSON.parse(storedIsOwner));
     }
-  }, []);
+  }, [ ]);
 
   const handleSwitch = () => {
     if (user?.role.includes("owner")) {

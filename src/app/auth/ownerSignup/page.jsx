@@ -65,7 +65,9 @@ const OwnerSignup = ({
       const response = await registerUser(formData).unwrap();
       if (response.success) {
         // Save user data and token in localStorage
-        localStorage.setItem("token", response.data?.token);
+        if(typeof window !== 'undefined'){
+          localStorage.setItem("token", response.data?.token);
+        }
 
         dispatch(setUser(response.data?.user));
         Swal.fire({
@@ -124,7 +126,11 @@ const OwnerSignup = ({
           router.push('/');
         });
         // Store only the token in localStorage
-        localStorage.setItem("token", response.data?.data?.token);
+
+        if(typeof window !== 'undefined'){
+
+          localStorage.setItem("token", response.data?.data?.token);
+        }
 
         // Dispatch action to set user data in RTK
         dispatch(setUser(response.data?.data?.user));
@@ -167,7 +173,10 @@ const OwnerSignup = ({
         });
 
         // Store only the token in localStorage
-        localStorage.setItem("token", response.data?.data?.token);
+        if(typeof window !== 'undefined'){
+          
+          localStorage.setItem("token", response.data?.data?.token);
+        }
 
         // Dispatch action to set user data in RTK
         dispatch(setUser(response.data?.data?.user));

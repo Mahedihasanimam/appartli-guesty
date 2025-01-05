@@ -20,8 +20,8 @@ import ProfileProtect from "@/components/ProfileProtect";
 
 
 const Profile = () => {
-  const user = useSelector((state) => state.user.user);
-  console.log(' main user',user)
+  const user = useSelector((state) => state.user.user?.data);
+  // console.log(' main user',user)
   const { isLoading, data: logdinUserReservation } = useLogdinuserReservationQuery();
   const [addRatings, { isLoading: ratingLoading, isError, isSuccess }] = useAddRatingsMutation();
   const router = useRouter();
@@ -214,7 +214,7 @@ const Profile = () => {
                 <h3 className="text-lg font-semibold">{user?.fullName || user?.firstName}</h3>
                 <p className="text-[#FFFFFF66]">
 
-                {user?.role?.map(i,idx=><span key={idx} className="pr-1">{i}</span>)}
+                {user?.role?.map((item,idx)=><span key={idx} className="pr-1">{item}</span>)}
                 </p>
               </div>
             </div>

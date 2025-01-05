@@ -149,5 +149,6 @@ export const {
   useUpdateProfileMutation,
   useGetNotifiByUserIdQuery,
   useReadNotificationByIdMutation,
-  useContactUsMutation
+  useContactUsMutation,
+  useGetProfileQuery
 } = userApi;
