@@ -280,8 +280,8 @@ const Page = () => {
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
+                  fillRule="evenodd"
+                  clipRulee="evenodd"
                   d="M0 1.35164L0.707107 0.644531L4.85355 4.79098L7.85355 1.79098L13.8536 7.79098V2.49808H14.8536V9.49809H7.85355V8.49808H13.1464L7.85355 3.20519L4.85355 6.20519L0 1.35164Z"
                   fill="#B73838"
                 />
@@ -331,8 +331,8 @@ const Page = () => {
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
+                  fillRule="evenodd"
+                  clipRulee="evenodd"
                   d="M7.85355 4.64453H14.8536V11.6445H13.8536V6.35164L7.85355 12.3516L4.85355 9.35164L0.707107 13.4981L0 12.791L4.85355 7.93742L7.85355 10.9374L13.1464 5.64453H7.85355V4.64453Z"
                   fill="#28A745"
                 />

@@ -128,7 +128,7 @@ const Myproperty = ({ data }) => {
       {/* Delete Confirmation Modal */}
       <Modal
         title="Confirm Deletion"
-        visible={isModalVisible}
+        open={isModalVisible}
         onOk={handleDelete}
         onCancel={handleCancel}
         okText="Delete"

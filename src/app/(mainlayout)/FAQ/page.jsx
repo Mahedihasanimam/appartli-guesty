@@ -42,11 +42,4 @@ const FAQ = () => {
   );
 };
 
-// Wrap the component with Suspense to handle async data loading.
-const FAQWithSuspense = () => (
-  <Suspense fallback={<div>Loading...</div>}>
-    <FAQ />
-  </Suspense>
-);
-
-export default FAQWithSuspense;
+export default FAQ;

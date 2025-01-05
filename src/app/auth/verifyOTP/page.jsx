@@ -8,18 +8,18 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useOtpVerifyMutation, useVerifyEmailMutation } from "@/redux/features/users/UserApi";
 import Swal from "sweetalert2";
 
-const VerifyOTP = ({ title = "OTP Verification" }) => {
+const VerifyOTP = ({ title = "OTP Verification",searchParams }) => {
   const [otp, setOtp] = useState(["", "", "", ""]);
   const [form] = Form.useForm();
   const router = useRouter();
-  const searchParams = useSearchParams();
+  // const searchParams = useSearchParams();
   const [email, setEmail] = useState("");
   const [verifyOTPCode, { isLoading: verifyotpcodeLoading }] = useOtpVerifyMutation();
   const [verifyEmail, { isLoading: resendLoading }] = useVerifyEmailMutation();
-
+  // console.log(searchParams);
   // Extract email from query parameters
   useEffect(() => {
-    const queryEmail = searchParams.get("email");
+    const queryEmail = searchParams?.email;
     if (queryEmail) {
       setEmail(queryEmail);
     }

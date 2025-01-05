@@ -285,7 +285,7 @@ const Profile = () => {
       <Modal
         width={700}
         className="custom-modal text-white"
-        visible={isModalVisible}
+        open={isModalVisible}
         onCancel={handleModalCancel}
         footer={[
           <Button

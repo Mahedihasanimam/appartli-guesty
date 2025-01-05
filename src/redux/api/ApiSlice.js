@@ -19,6 +19,7 @@ tagTypes: [
   'Properties',
   'bookingList',
   'reservation',
+  "FAQ"
 ],
   endpoints: () => ({}),
 });

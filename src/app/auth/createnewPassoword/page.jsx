@@ -10,9 +10,10 @@ import { HiEye, HiEyeOff } from "react-icons/hi"; // Importing icons from react-
 const VerifyEmail = ({
   title = "Create New Password",
   description = "You have to create a new password",
+  searchParams
 }) => {
   const router = useRouter();
-  const searchParams = useSearchParams();
+  // const searchParams = useSearchParams();
   const [resetPassword, { isLoading }] = useResetPasswordMutation();
   const [email, setEmail] = useState("");
   const [newpassword, setNewpassword] = useState("");
@@ -23,7 +24,7 @@ const VerifyEmail = ({
 
   // Extract email from query parameters
   useEffect(() => {
-    const queryEmail = searchParams.get("email");
+    const queryEmail = searchParams?.email;
     if (queryEmail) {
       setEmail(queryEmail);
     }
