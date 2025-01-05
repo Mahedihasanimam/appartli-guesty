@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { imageUrl } from "@/redux/api/ApiSlice";
 const RoomsCard = ({ data }) => {
-console.log(data)
+console.log(' sdlksfl',data.pictures[0].original)
   function formatDate(dateString) {
     const date = new Date(dateString);
     const options = { month: 'short', day: 'numeric' };
@@ -24,7 +24,7 @@ console.log(data)
             width={300}
             height={200}
             alt={data.location}
-            src={data?.picture?.thumbnail}
+            src={data.pictures[0].original}
             className=" w-full object-cover max-h-[200px] min-h-[200px] "
           />
         }

@@ -534,7 +534,7 @@ console.log(params?.id)
             {guestydata?.pictures?.map((image, index) => (
               <div key={index}>
                 <Image
-                  src={image?.thumbnail}
+                  src={image?.original}
                   alt={`Room Slide ${index + 1}`}
                   width={800}
                   height={600}
