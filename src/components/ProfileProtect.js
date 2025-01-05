@@ -24,7 +24,7 @@ const ProfileProtect = ({ children }) => {
         setLoading(false);
       }
     }
-  }, []); // This runs only once when the component mounts (client-side only)
+  }, [ router]); // This runs only once when the component mounts (client-side only)
 
   if (loading) {
     return <div>Loading...</div>; // Show loading while we check localStorage

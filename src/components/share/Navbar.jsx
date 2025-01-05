@@ -32,7 +32,7 @@ useEffect(()=>{
   if(addedToken){
     handlesetUser()
   }
-},[])
+},[ addedToken])
 
 
 
