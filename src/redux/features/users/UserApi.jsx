@@ -1,3 +1,5 @@
+import { setUser } from "./userSlice";
+
 const { api } = require("@/redux/api/ApiSlice");
 
 const userApi = api.injectEndpoints({
@@ -85,6 +87,14 @@ const userApi = api.injectEndpoints({
           Authorization: `Bearer ${token}`,
         },
       }),
+      async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled; // Wait for the query to fulfill
+          dispatch(setUser(data)); // Dispatch the setUser action
+        } catch (error) {
+          console.error("Error fetching profile:", error); // Handle any errors
+        }
+      },
       providesTags: ['user'],
     }),
 

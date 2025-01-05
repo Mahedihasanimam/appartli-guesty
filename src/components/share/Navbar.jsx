@@ -20,19 +20,19 @@ const dispatch=useDispatch()
   const [getProfile,{isLoading}]=useLazyGetProfileQuery()
 const addedToken=localStorage.getItem('token')
 
-const handlesetUser=async()=>{
+const handlesetUser=React.useCallback(async()=>{
   const user=await getProfile(addedToken)
  
   if(user?.data?.data){
     dispatch(setUser(user?.data?.data))
   }
-}
+},[])
 
 useEffect(()=>{
   if(addedToken){
     handlesetUser()
   }
-},[ addedToken])
+},[ addedToken,handlesetUser])
 
 
 

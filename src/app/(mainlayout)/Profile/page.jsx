@@ -15,7 +15,8 @@ import { RiCircleLine } from "react-icons/ri";
 import { MobileOutlined, UserOutlined } from "@ant-design/icons";
 import { CiGlobe } from "react-icons/ci";
 import Swal from "sweetalert2";
-import ProfileProtect from "@/components/profileProtect";
+import ProfileProtect from "@/components/ProfileProtect";
+
 
 
 const Profile = () => {
