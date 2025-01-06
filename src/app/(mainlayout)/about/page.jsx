@@ -16,6 +16,8 @@ const Page = () => {
   if(isLoading){
     return <div className="text-white">Loading....</div>
 }
+
+
 if(isError){
     return <div className="text-white">something went wrong</div>
 }

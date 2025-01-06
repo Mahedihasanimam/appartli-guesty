@@ -1,6 +1,5 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import storage from 'redux-persist/lib/storage';
-import { persistReducer } from 'redux-persist';
+import {  configureStore } from '@reduxjs/toolkit';
+
 import { api } from './api/ApiSlice';
 import useTokenReducer from './features/users/UserTokenSlice';
 import  userReducer  from './features/users/userSlice';

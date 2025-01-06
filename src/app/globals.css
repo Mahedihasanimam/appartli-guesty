@@ -404,3 +404,7 @@ li.ant-rate-star.ant-rate-star-zero span svg {
   border: 1px dashed #e0e0e0;          /* Dashed border for visual distinction */
   border-radius: 4px;                  /* Slight rounding for a smoother look */
 }
+ul.ant-dropdown-menu.ant-dropdown-menu-root.ant-dropdown-menu-vertical.ant-dropdown-menu-light.css-dev-only-do-not-override-vryruh {
+  background-color: black;
+  box-shadow: 20px 20px 20px rgba(172, 172, 172, 0.185);
+}
