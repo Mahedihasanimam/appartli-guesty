@@ -42,13 +42,13 @@ const Page = () => {
     if(!user){
       router.push('/auth/OwnerLogin')
     }
-    if (!user?.role.includes("owner") || localStorage.getItem('isOwner' == false) ) {
+    if (!user?.role?.includes("owner") || localStorage.getItem('isOwner' == false) ) {
       router.replace("/Profile");
     }
 
   }, [user, router]);
 
-  if (!user || !user?.role.includes("owner")) {
+  if (!user || !user?.role?.includes("owner")) {
     return <p>Redirecting...</p>;
   }
 

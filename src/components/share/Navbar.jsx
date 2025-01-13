@@ -18,25 +18,25 @@ import { imageUrl } from "@/redux/api/ApiSlice";
 const Navbar = () => {
   const user = useSelector((state) => state.user.user);
 
-  
-  const dispatch=useDispatch()
+
+  const dispatch = useDispatch()
 
 
 
-console.log('user img',imageUrl+user?.data?.image)
+  console.log('user img', imageUrl + user?.data?.image)
 
 
 
-//  console.log(user?._id)
-  
-  const router=useRouter()
-  const {logoutUser,token}=useContext(UserContext)
+  //  console.log(user?._id)
+
+  const router = useRouter()
+  const { logoutUser, token } = useContext(UserContext)
   const [drawerVisible, setDrawerVisible] = useState(false);
   const [languageModalVisible, setLanguageModalVisible] = useState(false);
   const [isowner, setisowner] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-  
+
 
   // Retrieve the state from localStorage on initial render
   useEffect(() => {
@@ -44,84 +44,88 @@ console.log('user img',imageUrl+user?.data?.image)
     if (storedIsOwner) {
       setisowner(JSON.parse(storedIsOwner));
     }
-  }, [ ]);
+  }, []);
 
   const handleSwitch = () => {
     if (user?.role?.includes("owner")) {
       const newIsOwner = !isowner;
       setisowner(newIsOwner);
-      localStorage.setItem("isOwner", newIsOwner); 
+      localStorage.setItem("isOwner", newIsOwner);
     } else {
       router.push("/auth/becomeinvestor");
     }
   };
 
-console.log("user",user?.role)
-console.log("user",user?.role)
+  console.log("user", user?.role)
+  console.log("user", user?.role)
 
 
-console.log(isowner)
-// const userRole=user?.role
-// const isownerr=userRole.map((role) => role === "owner")
-// const isguest=userRole.map((role) => role === "guest")
-// console.log('userRoleeeee',isownerr,isguest)
-const showLanguageModal = () => {
-  setLanguageModalVisible(true);
-};
+  console.log(isowner)
+  // const userRole=user?.role
+  // const isownerr=userRole.map((role) => role === "owner")
+  // const isguest=userRole.map((role) => role === "guest")
+  // console.log('userRoleeeee',isownerr,isguest)
+  const showLanguageModal = () => {
+    setLanguageModalVisible(true);
+  };
 
-const handleLanguageModalCancel = () => {
-  setLanguageModalVisible(false);
-};
-const handleLogut = () => {
-  localStorage.removeItem('isOwner')
-  logoutUser()
-  dispatch(clearUser())
-}
-const profileMenuItems = [
-  {
-    key: "1",
-    label: <Link href="/auth/GuestLogin">Guest Log in</Link>,
-    style: { color: "#ffffff" },
-  },
-  {
-    key: "2",
-    label: <Link href="/auth/OwnarLogin">Owner Log in</Link>,
-    style: { color: "#ffffff" },
-  },
-  {
-    key: "3",
-    label: <a href="/browsemore">Book your stay</a>,
-    style: { color: "#ffffff" },
-  },
-  {
-    key: "4",
-    label: <a href="/FAQ">FAQ</a>,
-    style: { color: "#ffffff" },
-  },
-  {
-    key: "5",
-    label:  isowner ? (
-      <Link href="/ownerProfile">Owner profile</Link>
-     
-    ) : (
-      <Link href="/Profile">My Profile</Link>
-    ),
+  const handleLanguageModalCancel = () => {
+    setLanguageModalVisible(false);
+  };
+  const handleLogut = () => {
+    localStorage.removeItem('isOwner')
+    logoutUser()
+    dispatch(clearUser())
+  }
+  const profileMenuItems = [
+    {
+      key: "1",
+      label: <Link href="/auth/GuestLogin">Guest Log in</Link>,
+      style: { color: "#ffffff" },
+    },
+    {
+      key: "2",
+      label: <Link href="/auth/OwnarLogin">Owner Log in</Link>,
+      style: { color: "#ffffff" },
+    },
+    {
+      key: "3",
+      label: <a href="/browsemore">Book your stay</a>,
+      style: { color: "#ffffff" },
+    },
+    {
+      key: "4",
+      label: <a href="/FAQ">FAQ</a>,
+      style: { color: "#ffffff" },
+    },
+    {
+      key: "5",
+      label: isowner ? (
+        <Link href="/ownerProfile">Owner profile</Link>
 
-
+      ) : (
+        <Link href="/Profile">My Profile</Link>
+      ),
 
 
 
-    style: { color: "#ffffff" },
-  },
-  {
-    key: "6",
-    label: (
-      <button onClick={handleLogut}>
-        <span style={{ color: "#EBCA7E" }}>Logout</span>
-      </button>
-    ),
-  },
-];
+
+
+      style: { color: "#ffffff" },
+    },
+    {
+      key: "6",
+      label: (
+
+        
+        <button onClick={handleLogut}>
+          {
+            user && <span style={{ color: "#EBCA7E" }}>Logout</span>
+          }
+        </button>
+      ),
+    },
+  ];
 
 
 
@@ -167,7 +171,7 @@ const profileMenuItems = [
         {/* Right Side: Links (Hidden on small screens) */}
         <div className="hidden lg:flex items-center space-x-6">
           {isowner ? (
-              <Button
+            <Button
               onClick={handleSwitch}
               style={{ backgroundColor: "#EBCA7E", color: "#000000" }}
               className="bg-[#EBCA7E] text-[#000000] font-bold text-[16px] p-5"
@@ -187,7 +191,7 @@ const profileMenuItems = [
           )}
 
           <div className="w-full flex gap-6 items-center justify-center">
-  
+
             <div>
               {/* notification ---------------- */}
               <Link href={'/allnotifications'}><div className="cursor-pointer " >
@@ -200,45 +204,48 @@ const profileMenuItems = [
 
               </div>
             </div>
-           
-            <Dropdown
-            style={{ backgroundColor: "#EBCA7E", color: "#000000" }}
-  menu={{ items: profileMenuItems }}
-  trigger={["hover"]}
-  className="text-white "
->
-  <div>
-    {/* Avatar or trigger content here */}
-    {user ? (
-      user?.data?.image ? (
-        <Avatar size={50} className="bg-gray-400">
-          <Image
-            width={50}
-            height={50}
-            src={imageUrl + user?.data?.image}
-            alt="Avatar"
-          />
-        </Avatar>
-      ) : (
-        <div className="h-[44px] w-[44px] flex items-center justify-center rounded-full bg-gray-400">
-          <UserOutlined className="text-xl" />
-        </div>
-      )
-    ) : (
-      <svg
-        width="40"
-        height="41"
-        viewBox="0 0 40 41"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        {/* SVG content */}
-      </svg>
-    )}
-  </div>
-</Dropdown>
 
-         
+            <Dropdown
+              style={{ backgroundColor: "#EBCA7E", color: "#000000" }}
+              menu={{ items: profileMenuItems }}
+              trigger={["hover"]}
+              className="text-white "
+            >
+              <div>
+                {/* Avatar or trigger content here */}
+                {user ? (
+                  user?.data?.image ? (
+                    <Avatar size={50} className="bg-gray-400">
+                      <Image
+                        width={50}
+                        height={50}
+                        src={imageUrl + user?.data?.image}
+                        alt="Avatar"
+                      />
+                    </Avatar>
+                  ) : (
+                    <div className="h-[44px] w-[44px] flex items-center justify-center rounded-full bg-gray-400">
+                      <UserOutlined className="text-xl" />
+                    </div>
+                  )
+                ) : (
+                  <svg width="40" height="41" viewBox="0 0 40 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect y="0.0361328" width="40" height="40" rx="16" fill="url(#paint0_linear_99_1963)"/>
+                  <path d="M16 16.8361C16 14.627 17.7909 12.8361 20 12.8361C22.2091 12.8361 24 14.627 24 16.8361C24 19.0453 22.2091 20.8361 20 20.8361C17.7909 20.8361 16 19.0453 16 16.8361Z" fill="black"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M20 8.03613C13.3726 8.03613 8 13.4087 8 20.0361C8 26.6635 13.3726 32.0361 20 32.0361C26.6274 32.0361 32 26.6635 32 20.0361C32 13.4087 26.6274 8.03613 20 8.03613ZM9.6 20.0361C9.6 14.2924 14.2562 9.63613 20 9.63613C25.7438 9.63613 30.4 14.2924 30.4 20.0361C30.4 22.9954 29.164 25.6661 27.1801 27.5599C26.9385 24.6899 24.5324 22.4361 21.6 22.4361H18.4C15.4676 22.4361 13.0615 24.6899 12.8199 27.5599C10.836 25.6661 9.6 22.9954 9.6 20.0361Z" fill="black"/>
+                  <defs>
+                  <linearGradient id="paint0_linear_99_1963" x1="0" y1="20.0361" x2="40" y2="20.0361" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#EBCA7E"/>
+                  <stop offset="1" stop-color="#C4B490"/>
+                  </linearGradient>
+                  </defs>
+                  </svg>
+                  
+                )}
+              </div>
+            </Dropdown>
+
+
           </div>
         </div>
 
@@ -281,83 +288,83 @@ const profileMenuItems = [
           onClose={() => setDrawerVisible(false)}
           open={drawerVisible}
         >
-                 {/* Right Side: Links (Hidden on small screens) */}
-        <div className=" flex items-center space-x-6">
-          {isowner ? (
+          {/* Right Side: Links (Hidden on small screens) */}
+          <div className=" flex items-center space-x-6">
+            {isowner ? (
               <Button
-              onClick={handleSwitch}
-              style={{ backgroundColor: "#EBCA7E", color: "#000000" }}
-              className="bg-[#EBCA7E] text-[#000000] font-bold text-[16px] p-5"
-              type="primary"
-            >
-              Estimate my property
-            </Button>
-          ) : (
-            <Button
-              onClick={handleSwitch}
-              style={{ backgroundColor: "#EBCA7E", color: "#000000" }}
-              className="bg-[#EBCA7E] text-[#000000] font-bold text-[16px] p-5"
-              type="primary"
-            >
-              Switch to Guest profile
-            </Button>
-          )}
+                onClick={handleSwitch}
+                style={{ backgroundColor: "#EBCA7E", color: "#000000" }}
+                className="bg-[#EBCA7E] text-[#000000] font-bold text-[16px] p-5"
+                type="primary"
+              >
+                Estimate my property
+              </Button>
+            ) : (
+              <Button
+                onClick={handleSwitch}
+                style={{ backgroundColor: "#EBCA7E", color: "#000000" }}
+                className="bg-[#EBCA7E] text-[#000000] font-bold text-[16px] p-5"
+                type="primary"
+              >
+                Switch to Guest profile
+              </Button>
+            )}
 
-          <div className="w-full flex gap-6 items-center justify-center">
- 
-            <div>
-              {/* notification ---------------- */}
-              <Link href={'/allnotifications'}><div className="cursor-pointer " >
-                <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M22 20.0361H2V18.0361H3V11.0671C3 6.07913 7.03 2.03613 12 2.03613C16.97 2.03613 21 6.07913 21 11.0671V18.0361H22V20.0361ZM9.5 21.0361H14.5C14.5 21.6992 14.2366 22.3351 13.7678 22.8039C13.2989 23.2727 12.663 23.5361 12 23.5361C11.337 23.5361 10.7011 23.2727 10.2322 22.8039C9.76339 22.3351 9.5 21.6992 9.5 21.0361Z" fill="#EDEDED" />
-                </svg>
+            <div className="w-full flex gap-6 items-center justify-center">
 
-              </div></Link>
               <div>
+                {/* notification ---------------- */}
+                <Link href={'/allnotifications'}><div className="cursor-pointer " >
+                  <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22 20.0361H2V18.0361H3V11.0671C3 6.07913 7.03 2.03613 12 2.03613C16.97 2.03613 21 6.07913 21 11.0671V18.0361H22V20.0361ZM9.5 21.0361H14.5C14.5 21.6992 14.2366 22.3351 13.7678 22.8039C13.2989 23.2727 12.663 23.5361 12 23.5361C11.337 23.5361 10.7011 23.2727 10.2322 22.8039C9.76339 22.3351 9.5 21.6992 9.5 21.0361Z" fill="#EDEDED" />
+                  </svg>
+
+                </div></Link>
+                <div>
+
+                </div>
+              </div>
+              <div>
+                <Dropdown
+                  menu={{ items: profileMenuItems }}
+                  trigger={["hover"]}
+                  className="text-white"
+                >
+                  <div>
+                    {/* Avatar or trigger content here */}
+                    {user ? (
+                      user?.data?.image ? (
+                        <Avatar size={50} className="bg-gray-400">
+                          <Image
+                            width={50}
+                            height={50}
+                            src={imageUrl + user?.data?.image}
+                            alt="Avatar"
+                          />
+                        </Avatar>
+                      ) : (
+                        <div className="h-[44px] w-[44px] flex items-center justify-center rounded-full bg-gray-400">
+                          <UserOutlined className="text-xl" />
+                        </div>
+                      )
+                    ) : (
+                      <svg
+                        width="40"
+                        height="41"
+                        viewBox="0 0 40 41"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        {/* SVG content */}
+                      </svg>
+                    )}
+                  </div>
+                </Dropdown>
 
               </div>
             </div>
-            <div>
-            <Dropdown
-  menu={{ items: profileMenuItems }}
-  trigger={["hover"]}
-  className="text-white"
->
-  <div>
-    {/* Avatar or trigger content here */}
-    {user ? (
-      user?.data?.image ? (
-        <Avatar size={50} className="bg-gray-400">
-          <Image
-            width={50}
-            height={50}
-            src={imageUrl + user?.data?.image}
-            alt="Avatar"
-          />
-        </Avatar>
-      ) : (
-        <div className="h-[44px] w-[44px] flex items-center justify-center rounded-full bg-gray-400">
-          <UserOutlined className="text-xl" />
-        </div>
-      )
-    ) : (
-      <svg
-        width="40"
-        height="41"
-        viewBox="0 0 40 41"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        {/* SVG content */}
-      </svg>
-    )}
-  </div>
-</Dropdown>
-
-            </div>
           </div>
-        </div>
-          
+
           <ul className="space-y-2 py-4">
             <li>
               <Link href="/" className="text-[16px] hover:text-primary">
@@ -380,9 +387,9 @@ const profileMenuItems = [
               </Link>
             </li>
           </ul>
-      
 
- 
+
+
           <div className="flex flex-col space-y-4">
             <Link href={"/auth/signup"}>
               <Button
