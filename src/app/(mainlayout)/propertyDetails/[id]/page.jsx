@@ -1069,7 +1069,7 @@ console.log(params?.id)
             ))}
           </div>
 
-          <div className="mt-4 text-center w-full flex items-center justify-end">
+          {/* <div className="mt-4 text-center w-full flex items-center justify-end">
             <Button
               style={{ backgroundColor: "#EBCA7E", width: "240px", height: "44px", color: "#000000" }}
               className=" border-none text-black font-bold"
@@ -1079,12 +1079,12 @@ console.log(params?.id)
             >
               Show all
             </Button>
-          </div>
+          </div> */}
 
         </div>
       </div>
 
-      <div className="container mx-auto border-t-2 border-[#424242]  my-12 p-4">
+      <div className="container mx-auto   mb-12 p-4">
         <h3 className="text-[24px]  font-bold text-[#FFFFFF] py-6">Meet your host</h3>
         <div className=" text-white  flex  items-center">
           <Card

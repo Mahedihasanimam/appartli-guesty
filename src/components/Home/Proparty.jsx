@@ -9,28 +9,34 @@ import PropartyCard from "../ui/PropartyCard";
 import Image from "next/image";
 import whatsapplogo from '/public/images/wlogo.gif'
 import { useGetRoomsQuery } from "@/redux/features/Propertyapi/page";
+import { useGetGuestyPropertiesQuery } from "@/redux/features/guesty/guestyApi";
+import RoomsCard from "../ui/RoomsCard";
 
 const Proparty = ({title}) => {
   const router = useRouter();
-  const { data, isError, isLoading, refetch } = useGetRoomsQuery({}, {
-    refetchOnFocus: true
-  });
+  // const { data, isError, isLoading, refetch } = useGetRoomsQuery({}, {
+  //   refetchOnFocus: true
+  // });
 
 
-  if (isLoading) {
+  
+  const { data:guestydata, error, isLoading:guestyLoading } = useGetGuestyPropertiesQuery();
+console.log('guestyData',guestydata?.results)
+
+  if ( guestyLoading) {
     return <div>Loading...</div>;
   }
 
-  if (isError) {
+  if (error) {
     return <div>Error loading rooms data</div>;
   }
 
   // console.log('_________________', data)
 
   // Extract properties from the data for easier handling
-  const proparty = data?.properties || [];
+  const proparty = guestydata?.results || [];
 
-  
+
 
 
 
@@ -56,11 +62,12 @@ const Proparty = ({title}) => {
         <h1 className="xl:text-[36px] lg:text-[36px] font-black text-2xl text-white font-Merriweather text-center pb-12 leading-10 max-w-2xl mx-auto">
           {title}
         </h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          {proparty.slice(-8).map((item) => (
-            <PropartyCard data={item} key={item.id} />
-          ))}
-        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-4 lg:grid-cols-3 gap-8">
+              {proparty.map((item, itemIndex) => (
+                  <RoomsCard key={item._id} data={item} />
+                ))
+                .slice(0,8)}
+            </div>
         <Button
           onClick={() => router.push('/proparty/addpropartytrailer')}
           style={{ backgroundColor: "#EBCA7E", color: 'black', height: "48px", width: '200px' }}
