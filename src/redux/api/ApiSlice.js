@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const api = createApi({
   reducerPath: 'api',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://164.90.163.42:4000' ,
+  baseQuery: fetchBaseQuery({ baseUrl: 'http://164.92.162.65:4000' ,
     prepareHeaders: (headers, { getState }) => {
       const state = getState();
       // console.log('Current state:', state); // Log entire state for debugging
