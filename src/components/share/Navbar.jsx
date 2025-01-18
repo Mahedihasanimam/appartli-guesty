@@ -22,7 +22,7 @@ const Navbar = () => {
   const dispatch = useDispatch()
 
 
-
+dispatch(setUser(user))
   console.log('user img', imageUrl + user?.data?.image)
 
 
@@ -76,6 +76,7 @@ const Navbar = () => {
     localStorage.removeItem('isOwner')
     logoutUser()
     dispatch(clearUser())
+    router.push('/auth/GuestLogin')
   }
   const profileMenuItems = [
     {

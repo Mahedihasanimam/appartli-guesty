@@ -59,7 +59,8 @@ const Page = ({ params }) => {
   const user = useSelector((state) => state.user.user);
   // Place hooks at the top level
   const [dates, setDates] = useState(null);
-  const [guests, setGuests] = useState(2);
+  const [guests, setGuests] = useState();
+  const [email, setEmail] = useState();
   const [contact, setcontact] = useState();
   const [total, setTotal] = useState(0);
   const [value, setValue] = useState(0);
@@ -87,38 +88,38 @@ const Page = ({ params }) => {
   const currentDate = new Date();
   const startcalDate = currentDate.toISOString().split('T')[0];  // Current date in 'YYYY-MM-DD' format
   const endcalDate = new Date(currentDate.setFullYear(currentDate.getFullYear() + 1)).toISOString().split('T')[0]; // One year from today
-  
-  const { data:calenderData, error:calError, isLoading:calLoading } = useGetGuestyCalendarQuery({
-    listingId:params?.id,
-    startDate:startcalDate,
-    endDate:endcalDate,
+
+  const { data: calenderData, error: calError, isLoading: calLoading } = useGetGuestyCalendarQuery({
+    listingId: params?.id,
+    startDate: startcalDate,
+    endDate: endcalDate,
   });
 
-  
+
   const { isLoading: getratingLoading, data: ratingsData } = useGetRatingsByPropertyIdQuery(params?.id)
   if (calLoading) return <p>Loading calendar data...</p>;
 
   if (calError) return <p>Error fetching calendar: {calError.message}</p>;
 
-// Filter dates where blocks.b is true
-const blockedDates = calenderData?.data?.days
-  .filter((day) => day.blocks.b === true)
-  .map((day) => day.date);
+  // Filter dates where blocks.b is true
+  const blockedDates = calenderData?.data?.days
+    .filter((day) => day.blocks.b === true)
+    .map((day) => day.date);
 
-console.log("Blocked Dates:", blockedDates);
+  console.log("Blocked Dates:", blockedDates);
 
-const isDateBlocked = (currentDate) => {
-  if (!currentDate) return false;
+  const isDateBlocked = (currentDate) => {
+    if (!currentDate) return false;
 
-  // Format the current date as "YYYY-MM-DD"
-  const formattedDate = currentDate.format("YYYY-MM-DD");
+    // Format the current date as "YYYY-MM-DD"
+    const formattedDate = currentDate.format("YYYY-MM-DD");
 
-  // Check if the date is in the blockedDates array or is in the past
-  const isPastDate = moment(formattedDate).isBefore(moment(), "day");
-  const isBlocked = blockedDates.includes(formattedDate);
+    // Check if the date is in the blockedDates array or is in the past
+    const isPastDate = moment(formattedDate).isBefore(moment(), "day");
+    const isBlocked = blockedDates.includes(formattedDate);
 
-  return isBlocked || isPastDate;
-};
+    return isBlocked || isPastDate;
+  };
 
 
   if (isLoading || reviewLoading || getratingLoading) {
@@ -200,159 +201,60 @@ const isDateBlocked = (currentDate) => {
     }
   };
 
-//   const handleReserveClick = async () => {
-//     try {
 
 
-
-//       // const allresarveData = {
-//       //   propertyId: params?.id,
-//       //   checkInDate: startResarveDate,
-//       //   checkOutDate: endResarveDate,
-//       //   guests: guests,
-//       //   totalPrice: total
-//       // }
-
-
-
-//       const allGuestyData = {
-//         reservation: {
-//           listingId: params?.id,
-//           checkInDateLocalized: startResarveDate,
-//           checkOutDateLocalized: endResarveDate,
-//           guestsCount: guests,
-//           email: user?.email,
-//           phone: contact
-//         },
-//         guest: {
-//           firstName: user?.firstName,
-//           lastName: user?.lastName,
-//           email: user?.email,
-//           phone: contact,
-//         },
-//         policy: {
-//           privacy: {
-//             version: 1,
-//             dateOfAcceptance: startisodate.toISOString(), // or use `null` if not applicable
-//             isAccepted: true,
-//           },
-//           termsAndConditions: {
-//             version: 1,
-//             dateOfAcceptance: EndIsodate.toISOString(), // or use `null` if not applicable
-//             isAccepted: true,
-//           },
-//           marketing: {
-//             dateOfAcceptance: EndIsodate.toISOString(), // or use `null` if not applicable
-//             isAccepted: true,
-//           },
-//         },
-//       };
-
-//       // const respons = await MakeAreservation(allresarveData)
-//       // console.log(respons)
-
-//       const guestyRespons = await createReservation(allGuestyData).unwrap();
-// console.log('Guesty response:', guestyRespons);
-
-      
-//       // if (respons?.data?.success) {
-//       //   Swal.fire({
-//       //     title: 'Reserved!',
-//       //     text: respons?.data?.message,
-//       //     icon: 'success',
-//       //   });
-//       //   router.push('/payment')
-//       // } else {
-//       //   Swal.fire({
-//       //     title: respons?.error?.data?.message,
-//       //     text: 'Please try again...',
-//       //     icon: 'error',
-//       //   });
-//       //   router.push('/auth/GuestLogin')
-//       // }
-
-
-//     } catch (error) {
-//       Swal.fire({
-//         title: 'opps...!',
-//         text: 'Please try again...',
-//         icon: 'error',
-//       });
-      
-      
-//     }
-//   };
-
-
-console.log(params?.id)
+  console.log(params?.id)
   const handleReserveClick = async () => {
     try {
-      // const allGuestyData = {
-      //   reservation: {
-      //     listingId: params?.id,
-      //     checkInDateLocalized: startResarveDate,
-      //     checkOutDateLocalized: endResarveDate,
-      //     guestsCount: guests,
-      //     email: user?.email,
-      //     phone: contact || user?.phone,
-      //     MIN_NIGHT:2
-      //   },
-      //   guest: {
-      //     firstName: user?.firstName,
-      //     lastName: user?.lastName,
-      //     email: user?.email,
-      //     phone: contact,
-      //   },
-        // policy: {
-        //   privacy: {
-        //     version: 1,
-        //     dateOfAcceptance: startisodate?.toISOString(),
-        //     isAccepted: true,
-        //   },
-      //     termsAndConditions: {
-      //       version: 1,
-      //       dateOfAcceptance: EndIsodate?.toISOString(),
-      //       isAccepted: true,
-      //     },
-      //     marketing: {
-            // dateOfAcceptance: EndIsodate?.toISOString(),
-            // isAccepted: true,
-      //     },
-      //   },
-      // };
 
+      if (!user?.data?.email) {
+        Swal.fire({
+          title: 'Error',
+          text: 'Please login first',
+          icon: 'error',
+        })
+
+        return router.push('/auth/GuestLogin')
+      }
+      if (!startResarveDate || !endResarveDate || !guests || !contact) {
+        return Swal.fire({
+          title: 'Error',
+          text: 'All fields are required',
+          icon: 'error',
+        });
+      }
 
       const allGuestyData = {
 
         //   "coupon": "string",
         listingId: params?.id,
-          checkInDateLocalized: startResarveDate,
-          checkOutDateLocalized: endResarveDate,
-          guestsCount: guests,
-          email:user?.email,
-          phone:contact || user?.phone,
-          MIN_NIGHT:2,
-          "status": "confirmed",
-   
+        checkInDateLocalized: startResarveDate,
+        checkOutDateLocalized: endResarveDate,
+        guestsCount: guests,
+        email: user?.data?.email,
+        phone: contact || user?.data?.phone,
+        MIN_NIGHT: 2,
+        "status": "confirmed",
+
         guest: {
           firstName: "abir",
-          lastName: "arafat", 
+          lastName: "arafat",
           email: "abirwerks@gmail.com",
           phone: "01999999999"
         },
         policy: {
-          privacy: {version: 1,dateOfAcceptance: startisodate?.toISOString(), isAccepted: true},
-          termsAndConditions: {version: 1,   dateOfAcceptance: EndIsodate?.toISOString(),isAccepted: true,},
-          marketing: { dateOfAcceptance: EndIsodate?.toISOString(),isAccepted: true,}
+          privacy: { version: 1, dateOfAcceptance: startisodate?.toISOString(), isAccepted: true },
+          termsAndConditions: { version: 1, dateOfAcceptance: EndIsodate?.toISOString(), isAccepted: true, },
+          marketing: { dateOfAcceptance: EndIsodate?.toISOString(), isAccepted: true, }
         },
-        payment: {token: "pm_1KTRn22eZvKYlo2CkHIARaGo"}
+        payment: { token: "pm_1KTRn22eZvKYlo2CkHIARaGo" }
       }
 
       // API Call
       const guestyResponse = await createReservation(allGuestyData).unwrap();
 
       console.log(allGuestyData)
-  console.log('guestyrespons',guestyResponse)
+      console.log('guestyrespons', guestyResponse)
       // Check if the response contains required fields
       if (
         guestyResponse &&
@@ -377,14 +279,14 @@ console.log(params?.id)
           icon: 'warning',
         });
       }
-    }  catch (error) {
+    } catch (error) {
       console.error('API Error:', error);
-    
+
       // Extract the error details from the response
       const errorCode = error?.data || 'LISTING_CALENDAR_BLOCKED';
       const errorMessage = error?.data?.error?.message || 'Something went wrong. Please try again.';
       const errorDetails = error?.data?.error?.data?.errors?.join(', ') || 'No additional dates available.';
-    
+
       // Show the error in a user-friendly way
       Swal.fire({
         title: 'Reservation Failed!',
@@ -395,10 +297,10 @@ console.log(params?.id)
         icon: 'error',
       });
     }
-    
+
   };
   // <p><strong>Message:</strong> ${errorMessage}</p>
-   // <p><strong>Details:</strong> ${errorDetails}</p>
+  // <p><strong>Details:</strong> ${errorDetails}</p>
 
 
 
@@ -520,7 +422,7 @@ console.log(params?.id)
 
 
 
-  console.log('usersss', user)
+  console.log('usersss', user?.data?.email)
   return (
 
     // .container>div*{ssdflk}+div>p*4{items}
@@ -589,7 +491,7 @@ console.log(params?.id)
 
           <div className="mt-4">
             <RangePicker
-            disabledDate={isDateBlocked}
+              disabledDate={isDateBlocked}
               style={{
                 height: "44px",
                 backgroundColor: "#4B4B4B",
@@ -603,11 +505,14 @@ console.log(params?.id)
           </div>
 
           <div className="mt-4">
-            <InputNumber
+            <input
+              required
+              type="number"
+              style={{ backgroundColor: '#4B4B4B', height: '44px', border: 'none', padding: '16px' }}
               min={1}
               max={maxGuests}
-              defaultValue={2}
-              className="w-full text-[16px] font-medium custom-input" // Add custom class
+              value={guests}
+              className="w-full text-[16px] font-medium custom-input  custom-placeholder rounded-lg" // Add custom class
               placeholder="Guests"
               onChange={handleGuestsChange}
             />
@@ -616,24 +521,33 @@ console.log(params?.id)
           <div className="mt-4">
             <Input
               required
-              disabled
+              type="email"
+              onChange={(e) => setEmail(e.target.value)}
               style={{ backgroundColor: '#4B4B4B', height: '44px', border: 'none', color: 'white' }}
-              defaultValue={user?.email}
-              className="w-full text-[16px] font-medium " // Add custom class
+              defaultValue={user?.data?.email || email}
+              className="w-full text-[16px] font-medium custom-placeholder " // Add custom class
 
 
             />
           </div>
           <div className="mt-4">
-            <InputNumber
+            <input
               required
               type="number"
-              style={{ backgroundColor: '#4B4B4B', height: '44px', border: 'none', color: 'white' }}
-              defaultValue={user?.phone}
-              className="w-full text-[16px] font-medium " // Add custom class
+              style={{
+                backgroundColor: '#4B4B4B',
+                height: '44px',
+                border: 'none',
+                color: 'white', // Text value color
+                padding: '16px',
+              }}
+              defaultValue={user?.data?.phone}
+              className="w-full text-[16px] font-medium custom-placeholder rounded-lg" // Add a custom class
               placeholder="your phone number"
               onChange={handleContactChange}
             />
+
+
           </div>
 
           <Button
@@ -1148,7 +1062,7 @@ console.log(params?.id)
               <div className="w-full">
                 <div className="mb-4">
                   <h3 className="text-[20px] font-medium text-white">
-                    {owner?.fullName}  {owner?.role?.map((i, idx )=> <span key={idx} className="pr-1">{i}</span>)}
+                    {owner?.fullName}  {owner?.role?.map((i, idx) => <span key={idx} className="pr-1">{i}</span>)}
                   </h3>
                   <p className="text-sm text-[#FFFFFFCC] opacity-70 py-4">
                     Superhosts are experienced, highly rated hosts who are

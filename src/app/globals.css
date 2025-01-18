@@ -408,3 +408,8 @@ ul.ant-dropdown-menu.ant-dropdown-menu-root.ant-dropdown-menu-vertical.ant-dropd
   background-color: black;
   box-shadow: 20px 20px 20px rgba(172, 172, 172, 0.185);
 }
+
+.custom-placeholder::placeholder {
+  color: white; /* Ensures the placeholder text is white */
+  opacity: 1; /* Ensure full opacity */
+}
