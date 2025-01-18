@@ -59,7 +59,8 @@ const Page = ({ params }) => {
   const user = useSelector((state) => state.user.user);
   // Place hooks at the top level
   const [dates, setDates] = useState(null);
-  const [guests, setGuests] = useState();
+  const [guests, setGuests] = useState('');
+  const [phone, setphone] = useState();
   const [email, setEmail] = useState();
   const [contact, setcontact] = useState();
   const [total, setTotal] = useState(0);
@@ -216,13 +217,7 @@ const Page = ({ params }) => {
 
         return router.push('/auth/GuestLogin')
       }
-      if (!startResarveDate || !endResarveDate || !guests || !contact) {
-        return Swal.fire({
-          title: 'Error',
-          text: 'All fields are required',
-          icon: 'error',
-        });
-      }
+      
 
       const allGuestyData = {
 
@@ -303,7 +298,7 @@ const Page = ({ params }) => {
   // <p><strong>Details:</strong> ${errorDetails}</p>
 
 
-
+console.log('guestsss',guests)
 
 
 
@@ -514,7 +509,7 @@ const Page = ({ params }) => {
               value={guests}
               className="w-full text-[16px] font-medium custom-input  custom-placeholder rounded-lg" // Add custom class
               placeholder="Guests"
-              onChange={handleGuestsChange}
+              onChange={(e) => setGuests(e.target.value)}
             />
           </div>
 
@@ -541,10 +536,10 @@ const Page = ({ params }) => {
                 color: 'white', // Text value color
                 padding: '16px',
               }}
-              defaultValue={user?.data?.phone}
+              value={user?.data?.phone || phone}
               className="w-full text-[16px] font-medium custom-placeholder rounded-lg" // Add a custom class
               placeholder="your phone number"
-              onChange={handleContactChange}
+              onChange={(e) => setphone(e.target.value)}
             />
 
 
