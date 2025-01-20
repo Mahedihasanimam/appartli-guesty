@@ -95,31 +95,9 @@ const Hero = ({ title, description }) => {
             <div className="bg-[#FFFFFF99] rounded-xl shadow-lg px-4 py-6 space-y-4 lg:space-y-0 lg:px-8 lg:py-4 lg:space-x-4 lg:max-w-4xl w-full mx-auto my-6 lg:mt-20 mt-8">
               {/* Mobile & Tablet Layout */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:items-center gap-4">
-                {/* Location */}
-                <div className="flex-1 hover:bg-white rounded-lg p-2 transition-all duration-300 ease-in-out">
-                  <p className="text-[16px] text-[#000000] pl-2">Where</p>
-                  <Select
-                    showSearch
-                    placeholder="Select a city"
-                    value={location}
-                    onChange={(value) => {
-                      setLocation(value);
-                      handleInputChange("city", value);
-                    }}
-                    style={{ width: "100%" }}
-                  >
-                    {cities?.map((city, index) => (
-                      <Option key={index} value={city}>
-                        <p className="text-[16px] text-[#000000] pl-2 flex items-center space-x-2">
-                          <IoLocationOutline /> {city}
-                        </p>
-                      </Option>
-                    ))}
-                  </Select>
-                </div>
 
-                {/* Divider */}
-                <div className="hidden lg:block h-12 border-r border-gray-500"></div>
+
+
 
                 {/* Check In */}
                 <div className="flex-1 hover:bg-white rounded-lg p-2 transition-all duration-300 ease-in-out">
@@ -149,6 +127,36 @@ const Hero = ({ title, description }) => {
                     }}
                   />
                 </div>
+
+
+
+                {/* Divider */}
+                <div className="hidden lg:block h-12 border-r border-gray-500"></div>
+
+                {/* Location */}
+                <div className="flex-1 hover:bg-white rounded-lg p-2 transition-all duration-300 ease-in-out">
+                  <p className="text-[16px] text-[#000000] pl-2">Where</p>
+                  <Select
+                    showSearch
+                    placeholder="Select a city"
+                    value={location}
+                    onChange={(value) => {
+                      setLocation(value);
+                      handleInputChange("city", value);
+                    }}
+                    style={{ width: "100%" }}
+                  >
+                    {cities?.map((city, index) => (
+                      <Option key={index} value={city}>
+                        <p className="text-[16px] text-[#000000] pl-2 flex items-center space-x-2">
+                          <IoLocationOutline /> {city}
+                        </p>
+                      </Option>
+                    ))}
+                  </Select>
+                </div>
+
+
 
                 {/* Divider */}
                 <div className="hidden lg:block h-12 border-r border-gray-400"></div>
@@ -194,24 +202,24 @@ const Hero = ({ title, description }) => {
                 {error && <p>Error loading properties.</p>}
                 {data?.results?.map((property) => (
                   <Link key={property?._id} href={`/propertyDetails/${property?._id}`}>
-                    <div  className="bg-white shadow rounded-lg p-4">
-                    <img
-                      src={property.picture?.thumbnail}
-                      alt={property.title}
-                      className="w-full h-40 object-cover rounded"
-                    />
-                    <h3 className="text-lg font-semibold mt-2">{property.title}</h3>
-                    <p className="text-sm text-gray-600">
-                      {property.address?.city}, {property.address?.country}
-                    </p>
-                    <p className="text-sm mt-1">Guests: {property.accommodates}</p>
-                    <p className="text-sm">
-                      Bedrooms: {property.bedrooms} | Bathrooms: {property.bathrooms}
-                    </p>
-                    <p className="text-sm font-bold mt-1">
-                      Price: {property.prices?.basePrice} {property.prices?.currency}
-                    </p>
-                  </div>
+                    <div className="bg-white shadow rounded-lg p-4">
+                      <img
+                        src={property.picture?.thumbnail}
+                        alt={property.title}
+                        className="w-full h-40 object-cover rounded"
+                      />
+                      <h3 className="text-lg font-semibold mt-2">{property.title}</h3>
+                      <p className="text-sm text-gray-600">
+                        {property.address?.city}, {property.address?.country}
+                      </p>
+                      <p className="text-sm mt-1">Guests: {property.accommodates}</p>
+                      <p className="text-sm">
+                        Bedrooms: {property.bedrooms} | Bathrooms: {property.bathrooms}
+                      </p>
+                      <p className="text-sm font-bold mt-1">
+                        Price: {property.prices?.basePrice} {property.prices?.currency}
+                      </p>
+                    </div>
                   </Link>
                 ))}
               </div>
