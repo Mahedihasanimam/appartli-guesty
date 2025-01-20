@@ -87,7 +87,7 @@ const Page = ({ params }) => {
   // console.log('guestyyyy',guestydata)
   // console.log('guestyyyyid',params?.id)
   const currentDate = new Date();
-  const startcalDate = currentDate.toISOString().split('T')[0];  // Current date in 'YYYY-MM-DD' format
+  const startcalDate = currentDate.toISOString().split('T')[0];  
   const endcalDate = new Date(currentDate.setFullYear(currentDate.getFullYear() + 1)).toISOString().split('T')[0]; // One year from today
 
   const { data: calenderData, error: calError, isLoading: calLoading } = useGetGuestyCalendarQuery({

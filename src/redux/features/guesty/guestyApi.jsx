@@ -245,7 +245,7 @@ export const guestyApi = api.injectEndpoints({
     getGuestyProperties: builder.query({
       queryFn: async () => {
         try {
-          const token = 'eyJraWQiOiJHdlpFNmFDOGVETHJQTy1kOE9ZRV9SWFB5V1NpN0tKeWI3VjBycEhrTTdRIiwiYWxnIjoiUlMyNTYifQ.eyJ2ZXIiOjEsImp0aSI6IkFULkVOSmpBeFhxMUEwbk9pcXVVLXpvR0R2TDFnNW1vSWpNZ3hoT3gwbkhzUUUiLCJpc3MiOiJodHRwczovL2xvZ2luLmd1ZXN0eS5jb20vb2F1dGgyL2F1czFwOHFyaDUzQ2NRVEk5NWQ3IiwiYXVkIjoiaHR0cHM6Ly9vcGVuLWFwaS5ndWVzdHkuY29tIiwiaWF0IjoxNzM3MTcxNDg4LCJleHAiOjE3MzcyNTc4ODgsImNpZCI6IjBvYWx5dzRjY2Q0U21RaEZWNWQ3Iiwic2NwIjpbIm9wZW4tYXBpIl0sInJlcXVlc3RlciI6IkVYVEVSTkFMIiwiYWNjb3VudElkIjoiNjE2ODVmYWRiZGFlMDAwMDM4MWNmZjA3Iiwic3ViIjoiMG9hbHl3NGNjZDRTbVFoRlY1ZDciLCJ1c2VyUm9sZXMiOlt7InJvbGVJZCI6eyJwZXJtaXNzaW9ucyI6WyJhZG1pbiJdfX1dLCJyb2xlIjoidXNlciIsImNsaWVudFR5cGUiOiJvcGVuYXBpIiwiaWFtIjoidjMiLCJhY2NvdW50TmFtZSI6IkFwcGFydEFsaSIsIm5hbWUiOiJvcGVuYXBpIn0.K9RmjZRHcU7RorE29PhrDKW6ZDEfYkwQFd4DMG_6H9ciKzoa4vivSAqZKEtslj_uUqVltuqlZExfrNYOOXwvoqqmZUaWsRtyUX4pDGeEUfYWbLbhv8CLfsfNqE7Wtp8OrXVoy6mJlYX9ILdKKbpvF6Q3f5ofeVg78M7CT-RhmhdfakOUGt8JCOG6WJ1LQ63R-5IDb5ZQqLnHHoWSkixy_eFuOYLSwmbRkf0h4SgmOL6feTPCQthDjIc64JbnXxafAhi5j8ksEe4wRpAkbMUM9q_iAlSC2p6rB_zbgk6bi_D_OhlvqGVRYbv1uVsV82M5OF6SKhlEeKD7VMPtFe8Ang'; // Get the valid token dynamically
+          const token = 'eyJraWQiOiJHdlpFNmFDOGVETHJQTy1kOE9ZRV9SWFB5V1NpN0tKeWI3VjBycEhrTTdRIiwiYWxnIjoiUlMyNTYifQ.eyJ2ZXIiOjEsImp0aSI6IkFULk8zaVRPZThhUGJsbVZ4UWdnT2Ywam11dWpRczNrNnhNQk45QUMwZ2JQclUiLCJpc3MiOiJodHRwczovL2xvZ2luLmd1ZXN0eS5jb20vb2F1dGgyL2F1czFwOHFyaDUzQ2NRVEk5NWQ3IiwiYXVkIjoiaHR0cHM6Ly9vcGVuLWFwaS5ndWVzdHkuY29tIiwiaWF0IjoxNzM3MzQ2MDQwLCJleHAiOjE3Mzc0MzI0NDAsImNpZCI6IjBvYWx5dzRjY2Q0U21RaEZWNWQ3Iiwic2NwIjpbIm9wZW4tYXBpIl0sInJlcXVlc3RlciI6IkVYVEVSTkFMIiwiYWNjb3VudElkIjoiNjE2ODVmYWRiZGFlMDAwMDM4MWNmZjA3Iiwic3ViIjoiMG9hbHl3NGNjZDRTbVFoRlY1ZDciLCJ1c2VyUm9sZXMiOlt7InJvbGVJZCI6eyJwZXJtaXNzaW9ucyI6WyJhZG1pbiJdfX1dLCJyb2xlIjoidXNlciIsImNsaWVudFR5cGUiOiJvcGVuYXBpIiwiaWFtIjoidjMiLCJhY2NvdW50TmFtZSI6IkFwcGFydEFsaSIsIm5hbWUiOiJvcGVuYXBpIn0.BsJWNObKPWPzxibNpPhNZJKR1M2nxXB9gGB13eERcrY-NW8jVR8ZljVrQR_croVtWgnrkQzorvLPjwzs3NIsiL8mYtBzlFYlnVTMf1CSANJ6xgo6YjawK2rLG8MmH52u4NNoRRbVoI9wK8lP3n_gDy5JB88HjWwmTXSaQEUmAcgHoJDvtf2ilC0-EPkRUt0CkSd62vxKxjeZi5CaarvfdksClRpJUjYXOojVMqWgjfy5u-OjU4RqWdortWmE21OzwQEq07nj5sOVBNinpNAKrB5X8vTHN8lBmclWnCFF9CA0kTB4hJpfnmi5n37BFedeSP93gdZ9zRmux4-UybLpNg'; // Get the valid token dynamically
           const response = await fetch('https://open-api.guesty.com/v1/listings', {
             method: 'GET',
             headers: {
@@ -271,7 +271,7 @@ export const guestyApi = api.injectEndpoints({
     getGuestySingleProperty: builder.query({
       queryFn: async (listingId) => {
         try {
-          const token = 'eyJraWQiOiJHdlpFNmFDOGVETHJQTy1kOE9ZRV9SWFB5V1NpN0tKeWI3VjBycEhrTTdRIiwiYWxnIjoiUlMyNTYifQ.eyJ2ZXIiOjEsImp0aSI6IkFULkVOSmpBeFhxMUEwbk9pcXVVLXpvR0R2TDFnNW1vSWpNZ3hoT3gwbkhzUUUiLCJpc3MiOiJodHRwczovL2xvZ2luLmd1ZXN0eS5jb20vb2F1dGgyL2F1czFwOHFyaDUzQ2NRVEk5NWQ3IiwiYXVkIjoiaHR0cHM6Ly9vcGVuLWFwaS5ndWVzdHkuY29tIiwiaWF0IjoxNzM3MTcxNDg4LCJleHAiOjE3MzcyNTc4ODgsImNpZCI6IjBvYWx5dzRjY2Q0U21RaEZWNWQ3Iiwic2NwIjpbIm9wZW4tYXBpIl0sInJlcXVlc3RlciI6IkVYVEVSTkFMIiwiYWNjb3VudElkIjoiNjE2ODVmYWRiZGFlMDAwMDM4MWNmZjA3Iiwic3ViIjoiMG9hbHl3NGNjZDRTbVFoRlY1ZDciLCJ1c2VyUm9sZXMiOlt7InJvbGVJZCI6eyJwZXJtaXNzaW9ucyI6WyJhZG1pbiJdfX1dLCJyb2xlIjoidXNlciIsImNsaWVudFR5cGUiOiJvcGVuYXBpIiwiaWFtIjoidjMiLCJhY2NvdW50TmFtZSI6IkFwcGFydEFsaSIsIm5hbWUiOiJvcGVuYXBpIn0.K9RmjZRHcU7RorE29PhrDKW6ZDEfYkwQFd4DMG_6H9ciKzoa4vivSAqZKEtslj_uUqVltuqlZExfrNYOOXwvoqqmZUaWsRtyUX4pDGeEUfYWbLbhv8CLfsfNqE7Wtp8OrXVoy6mJlYX9ILdKKbpvF6Q3f5ofeVg78M7CT-RhmhdfakOUGt8JCOG6WJ1LQ63R-5IDb5ZQqLnHHoWSkixy_eFuOYLSwmbRkf0h4SgmOL6feTPCQthDjIc64JbnXxafAhi5j8ksEe4wRpAkbMUM9q_iAlSC2p6rB_zbgk6bi_D_OhlvqGVRYbv1uVsV82M5OF6SKhlEeKD7VMPtFe8Ang';
+          const token = 'eyJraWQiOiJHdlpFNmFDOGVETHJQTy1kOE9ZRV9SWFB5V1NpN0tKeWI3VjBycEhrTTdRIiwiYWxnIjoiUlMyNTYifQ.eyJ2ZXIiOjEsImp0aSI6IkFULk8zaVRPZThhUGJsbVZ4UWdnT2Ywam11dWpRczNrNnhNQk45QUMwZ2JQclUiLCJpc3MiOiJodHRwczovL2xvZ2luLmd1ZXN0eS5jb20vb2F1dGgyL2F1czFwOHFyaDUzQ2NRVEk5NWQ3IiwiYXVkIjoiaHR0cHM6Ly9vcGVuLWFwaS5ndWVzdHkuY29tIiwiaWF0IjoxNzM3MzQ2MDQwLCJleHAiOjE3Mzc0MzI0NDAsImNpZCI6IjBvYWx5dzRjY2Q0U21RaEZWNWQ3Iiwic2NwIjpbIm9wZW4tYXBpIl0sInJlcXVlc3RlciI6IkVYVEVSTkFMIiwiYWNjb3VudElkIjoiNjE2ODVmYWRiZGFlMDAwMDM4MWNmZjA3Iiwic3ViIjoiMG9hbHl3NGNjZDRTbVFoRlY1ZDciLCJ1c2VyUm9sZXMiOlt7InJvbGVJZCI6eyJwZXJtaXNzaW9ucyI6WyJhZG1pbiJdfX1dLCJyb2xlIjoidXNlciIsImNsaWVudFR5cGUiOiJvcGVuYXBpIiwiaWFtIjoidjMiLCJhY2NvdW50TmFtZSI6IkFwcGFydEFsaSIsIm5hbWUiOiJvcGVuYXBpIn0.BsJWNObKPWPzxibNpPhNZJKR1M2nxXB9gGB13eERcrY-NW8jVR8ZljVrQR_croVtWgnrkQzorvLPjwzs3NIsiL8mYtBzlFYlnVTMf1CSANJ6xgo6YjawK2rLG8MmH52u4NNoRRbVoI9wK8lP3n_gDy5JB88HjWwmTXSaQEUmAcgHoJDvtf2ilC0-EPkRUt0CkSd62vxKxjeZi5CaarvfdksClRpJUjYXOojVMqWgjfy5u-OjU4RqWdortWmE21OzwQEq07nj5sOVBNinpNAKrB5X8vTHN8lBmclWnCFF9CA0kTB4hJpfnmi5n37BFedeSP93gdZ9zRmux4-UybLpNg';
           // Get the valid token dynamically
           const response = await fetch(`https://open-api.guesty.com/v1/listings/${listingId}`, {
             method: 'GET',
@@ -298,7 +298,7 @@ export const guestyApi = api.injectEndpoints({
     createGuestyReservation: builder.mutation({
       queryFn: async (reservationData) => {
         try {
-          const token = 'eyJraWQiOiJHdlpFNmFDOGVETHJQTy1kOE9ZRV9SWFB5V1NpN0tKeWI3VjBycEhrTTdRIiwiYWxnIjoiUlMyNTYifQ.eyJ2ZXIiOjEsImp0aSI6IkFULkVOSmpBeFhxMUEwbk9pcXVVLXpvR0R2TDFnNW1vSWpNZ3hoT3gwbkhzUUUiLCJpc3MiOiJodHRwczovL2xvZ2luLmd1ZXN0eS5jb20vb2F1dGgyL2F1czFwOHFyaDUzQ2NRVEk5NWQ3IiwiYXVkIjoiaHR0cHM6Ly9vcGVuLWFwaS5ndWVzdHkuY29tIiwiaWF0IjoxNzM3MTcxNDg4LCJleHAiOjE3MzcyNTc4ODgsImNpZCI6IjBvYWx5dzRjY2Q0U21RaEZWNWQ3Iiwic2NwIjpbIm9wZW4tYXBpIl0sInJlcXVlc3RlciI6IkVYVEVSTkFMIiwiYWNjb3VudElkIjoiNjE2ODVmYWRiZGFlMDAwMDM4MWNmZjA3Iiwic3ViIjoiMG9hbHl3NGNjZDRTbVFoRlY1ZDciLCJ1c2VyUm9sZXMiOlt7InJvbGVJZCI6eyJwZXJtaXNzaW9ucyI6WyJhZG1pbiJdfX1dLCJyb2xlIjoidXNlciIsImNsaWVudFR5cGUiOiJvcGVuYXBpIiwiaWFtIjoidjMiLCJhY2NvdW50TmFtZSI6IkFwcGFydEFsaSIsIm5hbWUiOiJvcGVuYXBpIn0.K9RmjZRHcU7RorE29PhrDKW6ZDEfYkwQFd4DMG_6H9ciKzoa4vivSAqZKEtslj_uUqVltuqlZExfrNYOOXwvoqqmZUaWsRtyUX4pDGeEUfYWbLbhv8CLfsfNqE7Wtp8OrXVoy6mJlYX9ILdKKbpvF6Q3f5ofeVg78M7CT-RhmhdfakOUGt8JCOG6WJ1LQ63R-5IDb5ZQqLnHHoWSkixy_eFuOYLSwmbRkf0h4SgmOL6feTPCQthDjIc64JbnXxafAhi5j8ksEe4wRpAkbMUM9q_iAlSC2p6rB_zbgk6bi_D_OhlvqGVRYbv1uVsV82M5OF6SKhlEeKD7VMPtFe8Ang'; // Get the valid token dynamically
+          const token = 'eyJraWQiOiJHdlpFNmFDOGVETHJQTy1kOE9ZRV9SWFB5V1NpN0tKeWI3VjBycEhrTTdRIiwiYWxnIjoiUlMyNTYifQ.eyJ2ZXIiOjEsImp0aSI6IkFULk8zaVRPZThhUGJsbVZ4UWdnT2Ywam11dWpRczNrNnhNQk45QUMwZ2JQclUiLCJpc3MiOiJodHRwczovL2xvZ2luLmd1ZXN0eS5jb20vb2F1dGgyL2F1czFwOHFyaDUzQ2NRVEk5NWQ3IiwiYXVkIjoiaHR0cHM6Ly9vcGVuLWFwaS5ndWVzdHkuY29tIiwiaWF0IjoxNzM3MzQ2MDQwLCJleHAiOjE3Mzc0MzI0NDAsImNpZCI6IjBvYWx5dzRjY2Q0U21RaEZWNWQ3Iiwic2NwIjpbIm9wZW4tYXBpIl0sInJlcXVlc3RlciI6IkVYVEVSTkFMIiwiYWNjb3VudElkIjoiNjE2ODVmYWRiZGFlMDAwMDM4MWNmZjA3Iiwic3ViIjoiMG9hbHl3NGNjZDRTbVFoRlY1ZDciLCJ1c2VyUm9sZXMiOlt7InJvbGVJZCI6eyJwZXJtaXNzaW9ucyI6WyJhZG1pbiJdfX1dLCJyb2xlIjoidXNlciIsImNsaWVudFR5cGUiOiJvcGVuYXBpIiwiaWFtIjoidjMiLCJhY2NvdW50TmFtZSI6IkFwcGFydEFsaSIsIm5hbWUiOiJvcGVuYXBpIn0.BsJWNObKPWPzxibNpPhNZJKR1M2nxXB9gGB13eERcrY-NW8jVR8ZljVrQR_croVtWgnrkQzorvLPjwzs3NIsiL8mYtBzlFYlnVTMf1CSANJ6xgo6YjawK2rLG8MmH52u4NNoRRbVoI9wK8lP3n_gDy5JB88HjWwmTXSaQEUmAcgHoJDvtf2ilC0-EPkRUt0CkSd62vxKxjeZi5CaarvfdksClRpJUjYXOojVMqWgjfy5u-OjU4RqWdortWmE21OzwQEq07nj5sOVBNinpNAKrB5X8vTHN8lBmclWnCFF9CA0kTB4hJpfnmi5n37BFedeSP93gdZ9zRmux4-UybLpNg'; // Get the valid token dynamically
           const response = await fetch('https://open-api.guesty.com/v1/reservations', {
             method: 'POST',
             headers: {
@@ -327,7 +327,7 @@ export const guestyApi = api.injectEndpoints({
     getGuestyCalendar: builder.query({
       queryFn: async ({ listingId, startDate, endDate }) => {
         try {
-          const token = 'eyJraWQiOiJHdlpFNmFDOGVETHJQTy1kOE9ZRV9SWFB5V1NpN0tKeWI3VjBycEhrTTdRIiwiYWxnIjoiUlMyNTYifQ.eyJ2ZXIiOjEsImp0aSI6IkFULkVOSmpBeFhxMUEwbk9pcXVVLXpvR0R2TDFnNW1vSWpNZ3hoT3gwbkhzUUUiLCJpc3MiOiJodHRwczovL2xvZ2luLmd1ZXN0eS5jb20vb2F1dGgyL2F1czFwOHFyaDUzQ2NRVEk5NWQ3IiwiYXVkIjoiaHR0cHM6Ly9vcGVuLWFwaS5ndWVzdHkuY29tIiwiaWF0IjoxNzM3MTcxNDg4LCJleHAiOjE3MzcyNTc4ODgsImNpZCI6IjBvYWx5dzRjY2Q0U21RaEZWNWQ3Iiwic2NwIjpbIm9wZW4tYXBpIl0sInJlcXVlc3RlciI6IkVYVEVSTkFMIiwiYWNjb3VudElkIjoiNjE2ODVmYWRiZGFlMDAwMDM4MWNmZjA3Iiwic3ViIjoiMG9hbHl3NGNjZDRTbVFoRlY1ZDciLCJ1c2VyUm9sZXMiOlt7InJvbGVJZCI6eyJwZXJtaXNzaW9ucyI6WyJhZG1pbiJdfX1dLCJyb2xlIjoidXNlciIsImNsaWVudFR5cGUiOiJvcGVuYXBpIiwiaWFtIjoidjMiLCJhY2NvdW50TmFtZSI6IkFwcGFydEFsaSIsIm5hbWUiOiJvcGVuYXBpIn0.K9RmjZRHcU7RorE29PhrDKW6ZDEfYkwQFd4DMG_6H9ciKzoa4vivSAqZKEtslj_uUqVltuqlZExfrNYOOXwvoqqmZUaWsRtyUX4pDGeEUfYWbLbhv8CLfsfNqE7Wtp8OrXVoy6mJlYX9ILdKKbpvF6Q3f5ofeVg78M7CT-RhmhdfakOUGt8JCOG6WJ1LQ63R-5IDb5ZQqLnHHoWSkixy_eFuOYLSwmbRkf0h4SgmOL6feTPCQthDjIc64JbnXxafAhi5j8ksEe4wRpAkbMUM9q_iAlSC2p6rB_zbgk6bi_D_OhlvqGVRYbv1uVsV82M5OF6SKhlEeKD7VMPtFe8Ang';
+          const token = 'eyJraWQiOiJHdlpFNmFDOGVETHJQTy1kOE9ZRV9SWFB5V1NpN0tKeWI3VjBycEhrTTdRIiwiYWxnIjoiUlMyNTYifQ.eyJ2ZXIiOjEsImp0aSI6IkFULk8zaVRPZThhUGJsbVZ4UWdnT2Ywam11dWpRczNrNnhNQk45QUMwZ2JQclUiLCJpc3MiOiJodHRwczovL2xvZ2luLmd1ZXN0eS5jb20vb2F1dGgyL2F1czFwOHFyaDUzQ2NRVEk5NWQ3IiwiYXVkIjoiaHR0cHM6Ly9vcGVuLWFwaS5ndWVzdHkuY29tIiwiaWF0IjoxNzM3MzQ2MDQwLCJleHAiOjE3Mzc0MzI0NDAsImNpZCI6IjBvYWx5dzRjY2Q0U21RaEZWNWQ3Iiwic2NwIjpbIm9wZW4tYXBpIl0sInJlcXVlc3RlciI6IkVYVEVSTkFMIiwiYWNjb3VudElkIjoiNjE2ODVmYWRiZGFlMDAwMDM4MWNmZjA3Iiwic3ViIjoiMG9hbHl3NGNjZDRTbVFoRlY1ZDciLCJ1c2VyUm9sZXMiOlt7InJvbGVJZCI6eyJwZXJtaXNzaW9ucyI6WyJhZG1pbiJdfX1dLCJyb2xlIjoidXNlciIsImNsaWVudFR5cGUiOiJvcGVuYXBpIiwiaWFtIjoidjMiLCJhY2NvdW50TmFtZSI6IkFwcGFydEFsaSIsIm5hbWUiOiJvcGVuYXBpIn0.BsJWNObKPWPzxibNpPhNZJKR1M2nxXB9gGB13eERcrY-NW8jVR8ZljVrQR_croVtWgnrkQzorvLPjwzs3NIsiL8mYtBzlFYlnVTMf1CSANJ6xgo6YjawK2rLG8MmH52u4NNoRRbVoI9wK8lP3n_gDy5JB88HjWwmTXSaQEUmAcgHoJDvtf2ilC0-EPkRUt0CkSd62vxKxjeZi5CaarvfdksClRpJUjYXOojVMqWgjfy5u-OjU4RqWdortWmE21OzwQEq07nj5sOVBNinpNAKrB5X8vTHN8lBmclWnCFF9CA0kTB4hJpfnmi5n37BFedeSP93gdZ9zRmux4-UybLpNg';
           const response = await fetch(`https://open-api.guesty.com/v1/availability-pricing/api/calendar/listings/${listingId}?startDate=${startDate}&endDate=${endDate}`,
             {
               method: 'GET',
@@ -353,6 +353,60 @@ export const guestyApi = api.injectEndpoints({
     }),
 
 
+    searchGuestyProperties: builder.query({
+      queryFn: async ({ city, checkIn, checkOut, minOccupancy }) => {
+        const token =
+          'eyJraWQiOiJHdlpFNmFDOGVETHJQTy1kOE9ZRV9SWFB5V1NpN0tKeWI3VjBycEhrTTdRIiwiYWxnIjoiUlMyNTYifQ.eyJ2ZXIiOjEsImp0aSI6IkFULk8zaVRPZThhUGJsbVZ4UWdnT2Ywam11dWpRczNrNnhNQk45QUMwZ2JQclUiLCJpc3MiOiJodHRwczovL2xvZ2luLmd1ZXN0eS5jb20vb2F1dGgyL2F1czFwOHFyaDUzQ2NRVEk5NWQ3IiwiYXVkIjoiaHR0cHM6Ly9vcGVuLWFwaS5ndWVzdHkuY29tIiwiaWF0IjoxNzM3MzQ2MDQwLCJleHAiOjE3Mzc0MzI0NDAsImNpZCI6IjBvYWx5dzRjY2Q0U21RaEZWNWQ3Iiwic2NwIjpbIm9wZW4tYXBpIl0sInJlcXVlc3RlciI6IkVYVEVSTkFMIiwiYWNjb3VudElkIjoiNjE2ODVmYWRiZGFlMDAwMDM4MWNmZjA3Iiwic3ViIjoiMG9hbHl3NGNjZDRTbVFoRlY1ZDciLCJ1c2VyUm9sZXMiOlt7InJvbGVJZCI6eyJwZXJtaXNzaW9ucyI6WyJhZG1pbiJdfX1dLCJyb2xlIjoidXNlciIsImNsaWVudFR5cGUiOiJvcGVuYXBpIiwiaWFtIjoidjMiLCJhY2NvdW50TmFtZSI6IkFwcGFydEFsaSIsIm5hbWUiOiJvcGVuYXBpIn0.BsJWNObKPWPzxibNpPhNZJKR1M2nxXB9gGB13eERcrY-NW8jVR8ZljVrQR_croVtWgnrkQzorvLPjwzs3NIsiL8mYtBzlFYlnVTMf1CSANJ6xgo6YjawK2rLG8MmH52u4NNoRRbVoI9wK8lP3n_gDy5JB88HjWwmTXSaQEUmAcgHoJDvtf2ilC0-EPkRUt0CkSd62vxKxjeZi5CaarvfdksClRpJUjYXOojVMqWgjfy5u-OjU4RqWdortWmE21OzwQEq07nj5sOVBNinpNAKrB5X8vTHN8lBmclWnCFF9CA0kTB4hJpfnmi5n37BFedeSP93gdZ9zRmux4-UybLpNg';
+    
+        try {
+          // Build the query parameters dynamically
+          const params = new URLSearchParams();
+          if (city) params.append('city', city);
+          if (checkIn) params.append('checkIn', checkIn);
+          if (checkOut) params.append('checkOut', checkOut);
+          if (minOccupancy) params.append('minOccupancy', minOccupancy);
+    
+          // Fetch data from the Guesty API
+          const response = await fetch(
+            `https://open-api.guesty.com/v1/listings?${params.toString()}`,
+            {
+              method: 'GET',
+              headers: {
+                Authorization: `Bearer ${token}`,
+                Accept: 'application/json',
+                'Content-Type': 'application/x-www-form-urlencoded',
+              },
+            }
+          );
+    
+          // Handle HTTP errors
+          if (!response.ok) {
+            const errorData = await response.text();
+            return {
+              error: {
+                status: response.status,
+                data: errorData,
+              },
+            };
+          }
+    
+          // Parse and return JSON data
+          const data = await response.json();
+          return { data };
+        } catch (error) {
+          // Handle unexpected errors
+          return {
+            error: {
+              status: 500,
+              message: error.message,
+            },
+          };
+        }
+      },
+      // providesTags: ['SearchResults'],
+    }),
+    
+
 
   }),
 });
@@ -361,5 +415,6 @@ export const {
   useGetGuestyPropertiesQuery,
   useCreateGuestyReservationMutation,
   useGetGuestySinglePropertyQuery,
-  useGetGuestyCalendarQuery
+  useGetGuestyCalendarQuery,
+  useSearchGuestyPropertiesQuery,
 } = guestyApi;

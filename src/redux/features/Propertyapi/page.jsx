@@ -94,18 +94,18 @@ const AddPropertyApi=api.injectEndpoints({
       invalidatesTags: ['Properties'], // Invalidate the 'Properties' tag to refresh relevant cached data
     }),
 
-    getAllSearchProperty: builder.query({
-      query: ({ location, maxGuests, startDate, endDate }) => {
-        // Build query parameters dynamically
-        const params = new URLSearchParams();
-        if (location) params.append('location', location);
-        if (maxGuests) params.append('maxGuests', maxGuests);
-        if (startDate) params.append('startDate', startDate);
-        if (endDate) params.append('endDate', endDate);
+    // getAllSearchProperty: builder.query({
+    //   query: ({ city, checkIn, checkOut, minOccupancy }) => {
+    //     // Build query parameters dynamically
+    //     const params = new URLSearchParams();
+    //     if (city) params.append('city', city);
+    //     if (checkIn) params.append('checkIn', checkIn);
+    //     if (checkOut) params.append('checkOut', checkOut);
+    //     if (minOccupancy) params.append('minOccupancy', minOccupancy);
     
-        return `/property/get-all-properties?${params.toString()}`;
-      },
-    }),
+    //     return `/property/get-all-properties?${params.toString()}`;
+    //   },
+    // }),
     
 
     

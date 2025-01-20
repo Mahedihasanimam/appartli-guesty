@@ -16,7 +16,7 @@ const Rooms = ({ title }) => {
   const [activeKey, setActiveKey] = useState("1");
 
   const { data:guestydata, error, isLoading:guestyLoading } = useGetGuestyPropertiesQuery();
-console.log('guestyData',guestydata?.results)
+// console.log('guestyData',guestydata?.results)
   // const axios = require('axios'); // Ensure you have Axios installed
 
   // async function getToken() {

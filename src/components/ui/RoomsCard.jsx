@@ -6,7 +6,7 @@ import Link from "next/link";
 import { imageUrl } from "@/redux/api/ApiSlice";
 import { IoLocationOutline } from "react-icons/io5";
 const RoomsCard = ({ data }) => {
-  console.log(' sdlksfl', data)
+  // console.log(' sdlksfl', data)
   function formatDate(dateString) {
     const date = new Date(dateString);
     const options = { month: 'short', day: 'numeric' };
