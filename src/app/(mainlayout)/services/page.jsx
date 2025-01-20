@@ -12,7 +12,9 @@ import Swal from 'sweetalert2';
 import Link from 'next/link';
 import { useSearchGuestyPropertiesQuery } from '@/redux/features/guesty/guestyApi';
 import { IoLocationOutline } from 'react-icons/io5';
+import Image from 'next/image';
 
+const { Option } = Select;
 const Page = () => {
   const [searchParams, setSearchParams] = useState({});
   const [debouncedParams, setDebouncedParams] = useState(searchParams);
@@ -171,7 +173,9 @@ const Page = () => {
                 {data?.results?.map((property) => (
                   <Link key={property?._id} href={`/propertyDetails/${property?._id}`}>
                     <div className="bg-white shadow rounded-lg p-4">
-                      <img
+                      <Image
+                        width={400}
+                        height={400}
                         src={property.picture?.thumbnail}
                         alt={property.title}
                         className="w-full h-40 object-cover rounded"

@@ -11,7 +11,9 @@ import Swal from "sweetalert2";
 import { useGetGuestyPropertiesQuery, useSearchGuestyPropertiesQuery } from "@/redux/features/guesty/guestyApi";
 import Link from "next/link";
 import { IoLocationOutline } from "react-icons/io5";
+import Image from "next/image";
 
+const { Option } = Select;
 
 const Page = () => {
   const { data, isError, isLoading, refetch } = useGetRoomsQuery({}, {
@@ -219,7 +221,9 @@ const handleInputChange = (field, value) => {
     {searchdata?.results?.map((property) => (
       <Link key={property?._id} href={`/propertyDetails/${property?._id}`}>
         <div className="bg-white shadow rounded-lg p-4">
-          <img
+          <Image
+            width={400}
+            height={400}
             src={property.picture?.thumbnail}
             alt={property.title}
             className="w-full h-40 object-cover rounded"

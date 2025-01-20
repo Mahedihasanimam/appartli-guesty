@@ -13,6 +13,9 @@ import { useSearchGuestyPropertiesQuery } from "@/redux/features/guesty/guestyAp
 import { IoLocationOutline } from "react-icons/io5";
 import Link from "next/link";
 
+const { RangePicker } = DatePicker;
+
+const { Option } = Select;
 
 
 
@@ -203,7 +206,7 @@ const Hero = ({ title, description }) => {
                 {data?.results?.map((property) => (
                   <Link key={property?._id} href={`/propertyDetails/${property?._id}`}>
                     <div className="bg-white shadow rounded-lg p-4">
-                      <img
+                      <Image
                         src={property.picture?.thumbnail}
                         alt={property.title}
                         className="w-full h-40 object-cover rounded"
