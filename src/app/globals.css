@@ -344,9 +344,7 @@ span.anticon.anticon-down.ant-select-suffix {
   margin: 0; /* Remove margin */
 }
 
-.ant-picker.ant-picker-outlined.css-dev-only-do-not-override-vryruh.w-full {
-  background: transparent;
-}
+
 
 .hero-carousel .slick-slide {
   height: 407px; /* Ensure the carousel has a consistent height */
@@ -412,4 +410,11 @@ ul.ant-dropdown-menu.ant-dropdown-menu-root.ant-dropdown-menu-vertical.ant-dropd
 .custom-placeholder::placeholder {
   color: white; /* Ensures the placeholder text is white */
   opacity: 1; /* Ensure full opacity */
+}
+.ant-picker.ant-picker-outlined {
+  background: white;
+}
+
+.ant-picker-input, .ant-picker-input input {
+  color: #020202 !important;
 }
