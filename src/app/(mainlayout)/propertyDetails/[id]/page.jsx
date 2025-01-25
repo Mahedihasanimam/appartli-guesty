@@ -516,6 +516,7 @@ console.log('guestsss',guests)
           <div className="mt-4">
             <Input
               required
+              placeholder="your email"
               type="email"
               onChange={(e) => setEmail(e.target.value)}
               style={{ backgroundColor: '#4B4B4B', height: '44px', border: 'none', color: 'white' }}

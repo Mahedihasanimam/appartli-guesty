@@ -12,6 +12,7 @@ import RoomsCard from "../ui/RoomsCard";
 import { useSearchGuestyPropertiesQuery } from "@/redux/features/guesty/guestyApi";
 import { IoLocationOutline } from "react-icons/io5";
 import Link from "next/link";
+import moment from "moment";
 
 const { RangePicker } = DatePicker;
 
@@ -23,6 +24,34 @@ const Hero = ({ title, description }) => {
 
   const [isCheckInVisible, setIsCheckInVisible] = useState(false);
   const [isCheckOutVisible, setIsCheckOutVisible] = useState(false);
+
+  const currentDate = new Date();
+  const startcalDate = currentDate.toISOString().split('T')[0];  
+  const endcalDate = new Date(currentDate.setFullYear(currentDate.getFullYear() + 1)).toISOString().split('T')[0]; // One year from today
+
+
+
+  const isDateBlocked = (currentDate) => {
+    if (!currentDate) return false;
+
+    // Format the current date as "YYYY-MM-DD"
+    const formattedDate = currentDate.format("YYYY-MM-DD");
+
+    // Check if the date is in the blockedDates array or is in the past
+    const isPastDate = moment(formattedDate).isBefore(moment(), "day");
+    // const isBlocked = blockedDates.includes(formattedDate);
+
+    return  isPastDate;
+  };
+
+
+
+
+
+
+
+
+
 
 
 
@@ -106,6 +135,7 @@ const Hero = ({ title, description }) => {
                 <div className="flex-1 hover:bg-white rounded-lg p-2 transition-all duration-300 ease-in-out">
                   <p className="text-[16px] text-[#000000] pl-2">Check In</p>
                   <DatePicker
+                   disabledDate={isDateBlocked}
                     className="w-full"
                     value={startDate ? dayjs(startDate) : null}
                     onChange={(date) => {
@@ -122,6 +152,7 @@ const Hero = ({ title, description }) => {
                 <div className="flex-1 hover:bg-white rounded-lg p-2 transition-all duration-300 ease-in-out">
                   <p className="text-[16px] text-[#000000] pl-2">Check Out</p>
                   <DatePicker
+                   disabledDate={isDateBlocked}
                     className="w-full"
                     value={endDate ? dayjs(endDate) : null}
                     onChange={(date) => {
