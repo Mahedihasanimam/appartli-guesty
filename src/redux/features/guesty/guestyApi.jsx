@@ -352,7 +352,7 @@ export const guestyApi = api.injectEndpoints({
       providesTags: ['Calendar'],
     }),
 
-
+ 
     searchGuestyProperties: builder.query({
       queryFn: async ({ city, checkIn, checkOut, minOccupancy }) => {
         const token =
