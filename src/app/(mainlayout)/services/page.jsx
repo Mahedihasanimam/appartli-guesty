@@ -82,6 +82,7 @@ const Page = () => {
                   />
                 </div>
 
+                
                 {/* Divider */}
                 <div className="hidden lg:block h-12 border-r border-gray-400"></div>
 
@@ -135,15 +136,15 @@ const Page = () => {
                 <div className="flex-1 hover:bg-white rounded-lg p-2 transition-all duration-300 ease-in-out">
                   <p className="text-[16px] text-[#000000] pl-4">Who</p>
                   <Input
-                    type="number"
-                    placeholder="Add Guest"
+                    type="text"
+                    placeholder="Add Guests"
                     value={maxGuests}
                     onChange={(e) => {
                       setMaxGuests(e.target.value);
                       handleInputChange("minOccupancy", e.target.value ? parseInt(e.target.value) : null);
                     }}
                     bordered={false}
-                    className="text-sm text-gray-700"
+                      className="text-sm text-gray-700 bg-white rounded-md h-8 w-full"
                   />
                 </div>
 
