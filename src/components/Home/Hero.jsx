@@ -66,7 +66,6 @@ const Hero = ({ title, description }) => {
   const [endDate, setEndDate] = useState(null);
   const [maxGuests, setMaxGuests] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
-console.log("startDate", startDate);
   const { data, error, isLoading } = useSearchGuestyPropertiesQuery(
     debouncedParams,
     {
