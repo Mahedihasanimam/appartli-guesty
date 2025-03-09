@@ -16,6 +16,8 @@ const Rooms = ({ title }) => {
   const [activeKey, setActiveKey] = useState("1");
 
   const { data:guestydata, error, isLoading:guestyLoading } = useGetGuestyPropertiesQuery();
+
+  console.log('eeror from rooms',error);
 // console.log('guestyData',guestydata?.results)
   // const axios = require('axios'); // Ensure you have Axios installed
 
@@ -100,9 +102,7 @@ const Rooms = ({ title }) => {
         defaultActiveKey="1"
         activeKey={activeKey}
         onChange={handleTabChange}
-        tabBarStyle={{
-          borderBottom: "none",
-        }}
+        tabBarStyle={{ borderBottom: "2px solid white" }}
       >
         {categories.map((category, index) => (
           <Tabs.TabPane

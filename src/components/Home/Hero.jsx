@@ -9,10 +9,11 @@ import { useGetAllSearchPropertyQuery } from "@/redux/features/Propertyapi/page"
 import Swal from "sweetalert2";
 import PropartyCard from "../ui/PropartyCard";
 import RoomsCard from "../ui/RoomsCard";
-import { useSearchGuestyPropertiesQuery } from "@/redux/features/guesty/guestyApi";
+
 import { IoLocationOutline } from "react-icons/io5";
 import Link from "next/link";
 import moment from "moment";
+import { useSearchGuestyPropertiesQuery } from "@/redux/features/guesty/guestyApi";
 
 const { RangePicker } = DatePicker;
 
@@ -27,7 +28,7 @@ const Hero = ({ title, description }) => {
 
   const currentDate = new Date();
   const startcalDate = currentDate.toISOString().split('T')[0];  
-  const endcalDate = new Date(currentDate.setFullYear(currentDate.getFullYear() + 1)).toISOString().split('T')[0]; // One year from today
+  const endcalDate = new Date(currentDate.setFullYear(currentDate.getFullYear() + 1)).toISOString().split('T')[0]; 
 
 
 
@@ -64,7 +65,7 @@ const Hero = ({ title, description }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { data, error, isLoading } = useSearchGuestyPropertiesQuery(debouncedParams, {
-    skip: Object.keys(debouncedParams).length === 0, // Skip API call if no params
+    skip: Object.keys(debouncedParams).length === 0, 
   });
 
   // Extract unique cities from data
@@ -76,7 +77,7 @@ const Hero = ({ title, description }) => {
   const cities = data?.results?.map((property) => property?.address?.city).filter(Boolean);
   console.log('cities', cities)
   console.log('data', data)
-  // Debounce search params to avoid excessive API calls
+
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedParams(searchParams);
@@ -91,6 +92,8 @@ const Hero = ({ title, description }) => {
       [field]: value || undefined,
     }));
   };
+
+  
 
 
   return (
@@ -167,28 +170,29 @@ const Hero = ({ title, description }) => {
                 {/* Divider */}
                 <div className="hidden lg:block h-12 border-r border-gray-500"></div>
 
-                {/* Location */}
-                <div className="flex-1 hover:bg-white rounded-lg p-2 transition-all duration-300 ease-in-out">
-                  <p className="text-[16px] text-[#000000] pl-2">Where</p>
-                  <Select
-                    showSearch
-                    placeholder="Select a city"
-                    value={location}
-                    onChange={(value) => {
-                      setLocation(value);
-                      handleInputChange("city", value);
-                    }}
-                    style={{ width: "100%" }}
-                  >
-                    {cities?.map((city, index) => (
-                      <Option key={index} value={city}>
-                        <p className="text-[16px] text-[#000000] pl-2 flex items-center space-x-2">
-                          <IoLocationOutline /> {city}
-                        </p>
-                      </Option>
-                    ))}
-                  </Select>
-                </div>
+               {/* Location */}
+<div className="flex-1 hover:bg-white rounded-lg p-2 transition-all duration-300 ease-in-out">
+  <p className="text-[16px] text-[#000000] pl-2">Where</p>
+  <Select
+    showSearch
+    placeholder="Select or enter a city"
+    value={location }
+    onChange={(value) => {
+      setLocation(value);
+      handleInputChange("city", value);
+    }}
+    style={{ width: "100%" }}
+    mode="combobox" 
+  >
+    {cities?.map((city, index) => (
+      <Option key={index} value={city}>
+        <p className="text-[16px] text-[#000000] pl-2 flex items-center space-x-2">
+          <IoLocationOutline /> {city}
+        </p>
+      </Option>
+    ))}
+  </Select>
+</div>
 
 
 

@@ -33,6 +33,15 @@ body {
   padding: 0;
 }
 
+
+
+.ant-tabs-ink-bar {
+  background-color: #EBCA7E !important; /* Change the active tab bar color */
+  height: 3px !important; /* Adjust thickness */
+  border-radius: 5px; /* Optional: rounded corners */
+}
+
+
 /* Remove the default Ant Design border for the Tabs */
 .ant-tabs-nav {
   border-bottom: none !important;
